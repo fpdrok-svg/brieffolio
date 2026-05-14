@@ -6,29 +6,30 @@
   <title>Brieffolio — Monthly Market Briefs for RIAs</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
     :root {
-      --bg: #030507;
-      --bg2: #070b10;
-      --bg3: #0b1018;
-      --surface: #0f1623;
-      --surface2: #141e2e;
-      --border: rgba(255,255,255,0.07);
-      --border2: rgba(255,255,255,0.12);
-      --text: #edf1f7;
-      --muted: #7c8fa6;
-      --soft: #4a5a6e;
-      --teal: #22d3c8;
-      --teal-glow: rgba(34,211,200,0.18);
-      --teal-dark: #0d9e96;
-      --blue: #3b82f6;
-      --font: 'Inter', system-ui, sans-serif;
-      --serif: 'Playfair Display', Georgia, serif;
-      --ease: cubic-bezier(0.16, 1, 0.3, 1);
-      --max: 1080px;
+      --bg:       #02040a;
+      --bg1:      #050810;
+      --surface:  #0a1020;
+      --surface2: #0e1628;
+      --border:   rgba(255,255,255,0.065);
+      --border2:  rgba(255,255,255,0.13);
+      --text:     #e8edf6;
+      --muted:    #768494;
+      --soft:     #3e4f62;
+      --teal:     #2dd4bf;
+      --tealA:    rgba(45,212,191,0.15);
+      --tealB:    rgba(45,212,191,0.06);
+      --blue:     #60a5fa;
+      --green:    #4ade80;
+      --amber:    #fbbf24;
+      --font:     'Inter', system-ui, -apple-system, sans-serif;
+      --serif:    'Instrument Serif', Georgia, serif;
+      --ease:     cubic-bezier(0.22, 1, 0.36, 1);
+      --max:      1080px;
     }
     body {
       font-family: var(--font);
@@ -36,466 +37,566 @@
       color: var(--text);
       -webkit-font-smoothing: antialiased;
       overflow-x: hidden;
-    }
-    /* NOISE OVERLAY */
-    body::before {
-      content: '';
-      position: fixed; inset: 0; z-index: 0;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
-      pointer-events: none;
+      line-height: 1.6;
     }
     a { text-decoration: none; color: inherit; }
     img { max-width: 100%; display: block; }
 
-    /* NAV */
+    /* ─── AMBIENT GLOWS ─── */
+    .glow-tl {
+      position: fixed; top: -280px; left: -280px;
+      width: 800px; height: 800px;
+      background: radial-gradient(circle, rgba(45,212,191,0.055) 0%, transparent 68%);
+      pointer-events: none; z-index: 0;
+    }
+    .glow-br {
+      position: fixed; bottom: -300px; right: -300px;
+      width: 900px; height: 900px;
+      background: radial-gradient(circle, rgba(96,165,250,0.04) 0%, transparent 68%);
+      pointer-events: none; z-index: 0;
+    }
+
+    /* ─── NAV ─── */
     header {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-      background: rgba(3,5,7,0.88);
-      backdrop-filter: blur(20px) saturate(160%);
+      position: fixed; inset: 0 0 auto;
+      z-index: 200;
+      background: rgba(2,4,10,0.82);
+      backdrop-filter: blur(22px) saturate(180%);
       border-bottom: 1px solid var(--border);
+      transition: background 0.3s;
     }
     nav {
       max-width: var(--max); margin: 0 auto;
-      padding: 0 1.5rem;
-      height: 62px;
+      padding: 0 1.75rem;
+      height: 64px;
       display: flex; align-items: center; justify-content: space-between;
     }
     .logo {
-      display: flex; align-items: center; gap: 10px;
-      font-size: 0.9rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase;
+      display: flex; align-items: center; gap: 11px;
+      font-size: 0.85rem; font-weight: 700;
+      letter-spacing: 0.22em; text-transform: uppercase;
+      color: var(--text);
     }
-    .logo-icon {
-      width: 32px; height: 32px;
-      background: conic-gradient(from 200deg at 35% 40%, #22d3c8, #3b82f6, #6366f1, #22d3c8);
-      border-radius: 38% 62% 46% 54%;
+    .logo-mark {
+      width: 34px; height: 34px; flex-shrink: 0;
+      background: conic-gradient(from 190deg at 38% 42%, #2dd4bf 0%, #60a5fa 40%, #818cf8 70%, #2dd4bf 100%);
+      border-radius: 42% 58% 50% 50% / 44% 44% 56% 56%;
       display: flex; align-items: center; justify-content: center;
-      font-size: 0.78rem; font-weight: 800; color: #030507;
-      box-shadow: 0 0 22px rgba(34,211,200,0.45);
+      font-size: 0.75rem; font-weight: 800; color: #020a0a;
+      box-shadow: 0 0 28px rgba(45,212,191,0.5), 0 0 0 1px rgba(45,212,191,0.2);
+      animation: pulse-logo 4s ease-in-out infinite;
     }
-    .logo span { color: var(--muted); }
+    @keyframes pulse-logo {
+      0%,100% { box-shadow: 0 0 28px rgba(45,212,191,0.5), 0 0 0 1px rgba(45,212,191,0.2); }
+      50%      { box-shadow: 0 0 44px rgba(45,212,191,0.8), 0 0 0 1px rgba(45,212,191,0.4); }
+    }
     .nav-links {
-      display: flex; align-items: center; gap: 2rem;
-      font-size: 0.82rem; color: var(--muted);
+      display: flex; align-items: center; gap: 2.25rem;
+      font-size: 0.82rem; font-weight: 450; color: var(--muted);
     }
-    .nav-links a { transition: color 0.2s; }
+    .nav-links a { transition: color 0.18s; position: relative; padding-bottom: 2px; }
+    .nav-links a::after {
+      content: ''; position: absolute; left: 0; bottom: -2px;
+      width: 0; height: 1px; background: var(--teal);
+      transition: width 0.22s var(--ease);
+    }
     .nav-links a:hover { color: var(--text); }
-    .nav-cta {
-      display: flex; align-items: center; gap: 0.75rem;
-    }
+    .nav-links a:hover::after { width: 100%; }
+    .nav-right { display: flex; align-items: center; gap: 0.6rem; }
     .btn {
-      display: inline-flex; align-items: center; gap: 0.4rem;
-      padding: 0.5rem 1.25rem; border-radius: 999px;
-      font-size: 0.82rem; font-weight: 500;
+      display: inline-flex; align-items: center; justify-content: center; gap: 0.35rem;
+      padding: 0.48rem 1.2rem; border-radius: 999px;
+      font-size: 0.8rem; font-weight: 500;
       border: 1px solid transparent;
-      transition: all 0.2s var(--ease);
-      cursor: pointer;
+      transition: all 0.2s var(--ease); cursor: pointer; white-space: nowrap;
     }
-    .btn-outline {
+    .btn-ghost {
       border-color: var(--border2); color: var(--muted);
-      background: rgba(255,255,255,0.03);
+      background: rgba(255,255,255,0.025);
     }
-    .btn-outline:hover { border-color: rgba(255,255,255,0.22); color: var(--text); }
-    .btn-solid {
-      background: var(--teal); color: #030e0e;
-      font-weight: 600;
-      box-shadow: 0 0 28px rgba(34,211,200,0.4);
+    .btn-ghost:hover { border-color: rgba(255,255,255,0.24); color: var(--text); }
+    .btn-teal {
+      background: var(--teal); color: #011a18; font-weight: 650;
+      box-shadow: 0 0 26px rgba(45,212,191,0.38);
     }
-    .btn-solid:hover {
-      background: #4de8df;
-      box-shadow: 0 0 44px rgba(34,211,200,0.55);
+    .btn-teal:hover {
+      background: #5eead4;
+      box-shadow: 0 0 44px rgba(45,212,191,0.6);
       transform: translateY(-1px);
     }
+    .btn-lg {
+      padding: 0.72rem 1.75rem;
+      font-size: 0.9rem;
+    }
 
-    /* HERO */
-    .hero {
+    /* ─── HERO ─── */
+    .hero-wrap {
       position: relative; z-index: 1;
-      padding: 160px 1.5rem 100px;
+      padding-top: 64px;
+    }
+    .hero {
       max-width: var(--max); margin: 0 auto;
-      display: grid; grid-template-columns: 1fr 440px; gap: 60px; align-items: center;
-    }
-    .hero-bg-glow {
-      position: fixed;
-      top: -200px; left: -200px; width: 900px; height: 900px;
-      background: radial-gradient(circle, rgba(34,211,200,0.06) 0%, transparent 70%);
-      pointer-events: none; z-index: 0;
-    }
-    .hero-bg-glow2 {
-      position: fixed;
-      bottom: -200px; right: -200px; width: 700px; height: 700px;
-      background: radial-gradient(circle, rgba(59,130,246,0.06) 0%, transparent 70%);
-      pointer-events: none; z-index: 0;
+      padding: 100px 1.75rem 80px;
+      display: grid; grid-template-columns: 1fr 430px; gap: 64px; align-items: center;
     }
     .eyebrow {
-      display: inline-flex; align-items: center; gap: 0.5rem;
-      font-size: 0.72rem; font-weight: 500; letter-spacing: 0.26em; text-transform: uppercase;
-      color: var(--teal); margin-bottom: 1.4rem;
+      display: inline-flex; align-items: center; gap: 0.55rem;
+      font-size: 0.7rem; font-weight: 600;
+      letter-spacing: 0.3em; text-transform: uppercase;
+      color: var(--teal); margin-bottom: 1.5rem;
+      padding: 0.3rem 0.9rem;
+      border: 1px solid rgba(45,212,191,0.25);
+      border-radius: 999px;
+      background: rgba(45,212,191,0.05);
     }
-    .eyebrow-dot { width: 5px; height: 5px; border-radius: 999px; background: var(--teal); }
+    .eyebrow-dot {
+      width: 5px; height: 5px; border-radius: 999px;
+      background: var(--teal);
+      animation: blink 2s ease-in-out infinite;
+    }
+    @keyframes blink {
+      0%,100% { opacity: 1; } 50% { opacity: 0.3; }
+    }
     h1 {
       font-family: var(--serif);
-      font-size: clamp(2.6rem, 4.5vw, 3.6rem);
-      line-height: 1.05; letter-spacing: -0.03em;
-      margin-bottom: 1.4rem;
+      font-size: clamp(2.7rem, 4.8vw, 3.8rem);
+      line-height: 1.04; letter-spacing: -0.04em;
+      margin-bottom: 1.5rem; font-weight: 400;
     }
     h1 em { font-style: italic; color: var(--teal); }
     .hero-sub {
-      font-size: 1.05rem; line-height: 1.7; color: var(--muted);
-      max-width: 30rem; margin-bottom: 2rem;
+      font-size: 1.05rem; line-height: 1.75; color: var(--muted);
+      max-width: 29rem; margin-bottom: 2.25rem; font-weight: 350;
     }
     .hero-actions { display: flex; gap: 0.75rem; flex-wrap: wrap; margin-bottom: 2.5rem; }
-    .social-proof {
+    .trust-line {
       display: flex; align-items: center; gap: 0.75rem;
-      font-size: 0.78rem; color: var(--soft);
+      font-size: 0.76rem; color: var(--soft);
     }
-    .sp-dots {
-      display: flex;
+    .avatars { display: flex; }
+    .avatar {
+      width: 24px; height: 24px; border-radius: 999px;
+      border: 2px solid var(--bg); margin-left: -7px;
+      background: linear-gradient(135deg, #3b82f6, #2dd4bf);
     }
-    .sp-dot {
-      width: 22px; height: 22px; border-radius: 999px;
-      border: 2px solid var(--bg);
-      background: linear-gradient(135deg, #3b82f6, #22d3c8);
-      margin-left: -6px;
-    }
-    .sp-dot:first-child { margin-left: 0; }
+    .avatar:first-child { margin-left: 0; background: linear-gradient(135deg, #818cf8, #60a5fa); }
+    .avatar:nth-child(3) { background: linear-gradient(135deg, #2dd4bf, #4ade80); }
 
-    /* CARD */
+    /* ─── HERO CARD ─── */
     .hero-card {
       position: relative; z-index: 2;
-      background: linear-gradient(145deg, #0e1929, #0a1220);
-      border: 1px solid rgba(255,255,255,0.09);
-      border-radius: 1.5rem;
-      padding: 1.75rem;
-      box-shadow: 0 40px 100px rgba(0,0,0,0.8), 0 0 0 1px rgba(34,211,200,0.06) inset;
+      background: linear-gradient(148deg, #0d1a2e 0%, #08101e 100%);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 1.6rem; padding: 1.75rem;
+      box-shadow: 0 50px 120px rgba(0,0,0,0.9),
+                  0 0 0 1px rgba(45,212,191,0.07) inset;
       overflow: hidden;
     }
     .hero-card::before {
       content: '';
-      position: absolute; top: -60px; right: -60px;
-      width: 200px; height: 200px;
-      background: radial-gradient(circle, rgba(34,211,200,0.14), transparent 70%);
+      position: absolute; top: -80px; right: -80px;
+      width: 240px; height: 240px;
+      background: radial-gradient(circle, rgba(45,212,191,0.12), transparent 68%);
       pointer-events: none;
     }
-    .card-label {
-      font-size: 0.68rem; font-weight: 600; letter-spacing: 0.24em; text-transform: uppercase;
-      color: var(--soft); margin-bottom: 1.25rem;
-      display: flex; align-items: center; justify-content: space-between;
+    .card-header {
+      display: flex; justify-content: space-between; align-items: center;
+      margin-bottom: 1.4rem;
     }
-    .card-badge {
-      font-size: 0.68rem; padding: 0.2rem 0.65rem;
-      border-radius: 999px; border: 1px solid rgba(34,211,200,0.3);
-      color: var(--teal); background: rgba(34,211,200,0.06);
+    .card-title-row { display: flex; flex-direction: column; gap: 0.2rem; }
+    .card-eyebrow {
+      font-size: 0.62rem; font-weight: 600; letter-spacing: 0.28em; text-transform: uppercase;
+      color: var(--soft);
+    }
+    .card-title-main { font-size: 0.85rem; font-weight: 600; color: var(--text); }
+    .live-badge {
+      display: flex; align-items: center; gap: 0.4rem;
+      font-size: 0.66rem; font-weight: 600; letter-spacing: 0.1em;
+      color: var(--teal);
+      padding: 0.25rem 0.7rem;
+      border-radius: 999px;
+      border: 1px solid rgba(45,212,191,0.28);
+      background: rgba(45,212,191,0.06);
+    }
+    .live-dot {
+      width: 5px; height: 5px; border-radius: 999px; background: var(--teal);
+      animation: blink 1.4s ease-in-out infinite;
     }
     .metrics {
       display: grid; grid-template-columns: 1fr 1fr; gap: 0.85rem;
-      margin-bottom: 1.25rem;
+      margin-bottom: 1.3rem;
     }
     .metric {
-      background: rgba(255,255,255,0.03);
-      border: 1px solid var(--border);
-      border-radius: 0.85rem; padding: 0.9rem;
+      background: rgba(14,22,40,0.9);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 0.9rem; padding: 1rem 0.85rem;
+      transition: border-color 0.2s;
     }
+    .metric:hover { border-color: rgba(45,212,191,0.2); }
     .metric-lbl {
-      font-size: 0.65rem; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase;
-      color: var(--soft); margin-bottom: 0.45rem;
+      font-size: 0.62rem; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--soft); margin-bottom: 0.4rem;
     }
     .metric-val {
-      font-family: var(--serif); font-size: 1.5rem;
-      letter-spacing: -0.02em; margin-bottom: 0.2rem;
+      font-family: var(--serif); font-size: 1.55rem; letter-spacing: -0.03em;
+      margin-bottom: 0.25rem; font-weight: 400;
     }
-    .metric-val.up { color: #4ade80; }
-    .metric-val.neutral { color: var(--teal); }
-    .metric-val.warn { color: #fb923c; }
-    .metric-note { font-size: 0.68rem; color: var(--soft); line-height: 1.4; }
-    .card-divider {
-      border: none; border-top: 1px solid var(--border);
-      margin: 1.1rem 0;
-    }
-    .card-footer-label { font-size: 0.7rem; color: var(--soft); line-height: 1.5; }
+    .t  { color: var(--teal); }
+    .a  { color: var(--amber); }
+    .g  { color: var(--green); }
+    .b  { color: var(--blue); }
+    .metric-note { font-size: 0.65rem; color: var(--soft); line-height: 1.4; }
+    .card-rule { border: none; border-top: 1px solid var(--border); margin: 1.1rem 0; }
+    .card-footer-txt { font-size: 0.68rem; color: var(--soft); line-height: 1.55; }
 
-    /* LOGO STRIP */
-    .logo-strip {
+    /* ─── DATA STRIP ─── */
+    .data-strip {
       position: relative; z-index: 1;
-      padding: 3rem 0;
       border-top: 1px solid var(--border);
       border-bottom: 1px solid var(--border);
-      overflow: hidden;
+      padding: 1.4rem 0;
+      background: rgba(5,8,16,0.6);
     }
-    .logo-strip-inner {
-      max-width: var(--max); margin: 0 auto; padding: 0 1.5rem;
-      display: flex; align-items: center; gap: 3rem;
+    .data-strip-inner {
+      max-width: var(--max); margin: 0 auto; padding: 0 1.75rem;
+      display: flex; align-items: center; gap: 2.5rem;
     }
-    .strip-label {
-      font-size: 0.7rem; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase;
+    .ds-label {
+      font-size: 0.65rem; font-weight: 700; letter-spacing: 0.26em; text-transform: uppercase;
       color: var(--soft); white-space: nowrap; flex-shrink: 0;
     }
-    .strip-items {
-      display: flex; align-items: center; gap: 2.5rem; flex-wrap: wrap;
-    }
-    .strip-item {
-      font-size: 0.78rem; font-weight: 500; color: var(--soft);
-      letter-spacing: 0.06em;
-    }
+    .ds-items { display: flex; align-items: center; gap: 2.25rem; flex-wrap: wrap; }
+    .ds-item { font-size: 0.76rem; font-weight: 500; color: var(--muted); letter-spacing: 0.04em; }
+    .ds-sep { width: 1px; height: 14px; background: var(--border2); flex-shrink: 0; }
 
-    /* SECTIONS */
-    section {
+    /* ─── STAT BAND ─── */
+    .stat-band {
       position: relative; z-index: 1;
-      padding: 6rem 1.5rem;
       max-width: var(--max); margin: 0 auto;
+      padding: 5rem 1.75rem;
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
     }
-    .section-tag {
-      font-size: 0.68rem; font-weight: 600; letter-spacing: 0.28em; text-transform: uppercase;
-      color: var(--teal); margin-bottom: 0.9rem;
+    .stat-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 1.2rem; padding: 1.75rem;
+      text-align: center;
+      transition: border-color 0.25s, transform 0.3s var(--ease), box-shadow 0.3s;
+    }
+    .stat-card:hover {
+      border-color: rgba(45,212,191,0.22);
+      transform: translateY(-4px);
+      box-shadow: 0 24px 60px rgba(0,0,0,0.6);
+    }
+    .stat-num {
+      font-family: var(--serif); font-size: 2.8rem; letter-spacing: -0.04em;
+      color: var(--teal); line-height: 1;
+      margin-bottom: 0.5rem;
+    }
+    .stat-label { font-size: 0.78rem; color: var(--muted); line-height: 1.5; }
+
+    /* ─── SECTIONS ─── */
+    .section {
+      position: relative; z-index: 1;
+      max-width: var(--max); margin: 0 auto;
+      padding: 6rem 1.75rem;
+    }
+    .section-kicker {
+      font-size: 0.68rem; font-weight: 700; letter-spacing: 0.3em; text-transform: uppercase;
+      color: var(--teal); margin-bottom: 1rem;
     }
     h2 {
       font-family: var(--serif);
-      font-size: clamp(1.8rem, 3vw, 2.6rem);
-      line-height: 1.1; letter-spacing: -0.03em;
-      margin-bottom: 1rem;
+      font-size: clamp(1.9rem, 3.2vw, 2.7rem);
+      line-height: 1.08; letter-spacing: -0.035em; font-weight: 400;
+      margin-bottom: 1.1rem;
     }
-    .section-sub {
-      font-size: 1rem; color: var(--muted); max-width: 34rem; line-height: 1.7;
-      margin-bottom: 3rem;
+    .section-lead {
+      font-size: 1rem; color: var(--muted); max-width: 34rem;
+      line-height: 1.75; margin-bottom: 3rem; font-weight: 350;
     }
-    .divider {
-      border: none;
-      border-top: 1px solid var(--border);
+    .full-divider {
+      border: none; border-top: 1px solid var(--border);
+      margin: 0;
     }
 
-    /* DELIVERABLES */
-    .deliverables-grid {
+    /* ─── DELIVERABLES ─── */
+    .del-grid {
       display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem;
     }
     .del-card {
       background: var(--surface);
       border: 1px solid var(--border);
-      border-radius: 1.1rem; padding: 1.5rem;
-      transition: border-color 0.25s, transform 0.25s var(--ease), box-shadow 0.25s;
+      border-radius: 1.2rem; padding: 1.6rem;
+      transition: border-color 0.25s, transform 0.3s var(--ease), box-shadow 0.3s;
     }
     .del-card:hover {
-      border-color: rgba(34,211,200,0.25);
-      transform: translateY(-3px);
-      box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+      border-color: rgba(45,212,191,0.28);
+      transform: translateY(-4px);
+      box-shadow: 0 24px 60px rgba(0,0,0,0.55);
     }
     .del-icon {
-      width: 38px; height: 38px; border-radius: 0.65rem;
-      background: var(--teal-glow);
+      width: 42px; height: 42px; border-radius: 0.75rem;
+      background: var(--tealB); border: 1px solid rgba(45,212,191,0.18);
       display: flex; align-items: center; justify-content: center;
-      font-size: 1.1rem; margin-bottom: 1rem;
+      font-size: 1.15rem; margin-bottom: 1.15rem;
     }
-    .del-card h3 { font-size: 0.95rem; font-weight: 600; margin-bottom: 0.5rem; }
-    .del-card p { font-size: 0.82rem; color: var(--muted); line-height: 1.65; margin-bottom: 1rem; }
-    .del-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+    .del-card h3 { font-size: 0.95rem; font-weight: 650; margin-bottom: 0.5rem; }
+    .del-card p { font-size: 0.82rem; color: var(--muted); line-height: 1.68; margin-bottom: 1.1rem; }
+    .tag-row { display: flex; flex-wrap: wrap; gap: 0.4rem; }
     .tag {
-      font-size: 0.65rem; padding: 0.22rem 0.65rem;
+      font-size: 0.63rem; padding: 0.22rem 0.65rem;
       border-radius: 999px; border: 1px solid var(--border2);
       color: var(--soft);
     }
 
-    /* HOW */
+    /* ─── STEPS ─── */
     .steps { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
     .step {
-      background: var(--surface); border: 1px solid var(--border);
-      border-radius: 1.1rem; padding: 1.5rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 1.2rem; padding: 1.75rem;
     }
-    .step-num {
-      font-size: 0.68rem; font-weight: 700; letter-spacing: 0.2em;
-      color: var(--teal); margin-bottom: 0.75rem;
+    .step-n {
+      font-size: 0.65rem; font-weight: 800; letter-spacing: 0.24em; text-transform: uppercase;
+      color: var(--teal); margin-bottom: 0.85rem;
     }
-    .step h3 { font-size: 1rem; font-weight: 600; margin-bottom: 0.5rem; }
-    .step p { font-size: 0.82rem; color: var(--muted); line-height: 1.65; margin-bottom: 0.9rem; }
-    .step ul { list-style: none; display: grid; gap: 0.35rem; }
-    .step ul li { font-size: 0.8rem; color: var(--text); padding-left: 1.1rem; position: relative; }
-    .step ul li::before {
+    .step h3 { font-size: 1rem; font-weight: 650; margin-bottom: 0.55rem; }
+    .step p { font-size: 0.82rem; color: var(--muted); line-height: 1.68; margin-bottom: 1rem; }
+    .step ul { list-style: none; display: grid; gap: 0.4rem; }
+    .step li { font-size: 0.8rem; padding-left: 1.2rem; position: relative; color: var(--text); }
+    .step li::before {
       content: '';
-      position: absolute; left: 0.2rem; top: 0.5rem;
+      position: absolute; left: 0.2rem; top: 0.52rem;
       width: 4px; height: 4px; border-radius: 999px; background: var(--teal);
     }
 
-    /* WHO */
+    /* ─── WHO ─── */
     .who-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
     .who-card {
       background: var(--surface);
       border: 1px solid var(--border);
-      border-radius: 1.1rem; padding: 1.5rem;
-      transition: border-color 0.25s, box-shadow 0.25s;
+      border-radius: 1.2rem; padding: 1.75rem;
+      transition: border-color 0.25s, box-shadow 0.3s;
     }
     .who-card:hover {
-      border-color: rgba(34,211,200,0.2);
-      box-shadow: 0 12px 40px rgba(0,0,0,0.4);
+      border-color: rgba(45,212,191,0.22);
+      box-shadow: 0 16px 50px rgba(0,0,0,0.5);
     }
-    .who-card h3 { font-size: 0.98rem; font-weight: 600; margin-bottom: 0.5rem; }
-    .who-card p { font-size: 0.82rem; color: var(--muted); line-height: 1.65; margin-bottom: 0.9rem; }
-    .who-card ul { list-style: none; display: grid; gap: 0.35rem; }
-    .who-card ul li { font-size: 0.8rem; padding-left: 1.1rem; position: relative; }
-    .who-card ul li::before {
+    .who-card h3 { font-size: 1rem; font-weight: 650; margin-bottom: 0.5rem; }
+    .who-card p { font-size: 0.82rem; color: var(--muted); line-height: 1.68; margin-bottom: 1rem; }
+    .who-card ul { list-style: none; display: grid; gap: 0.4rem; }
+    .who-card li { font-size: 0.8rem; padding-left: 1.2rem; position: relative; }
+    .who-card li::before {
       content: '';
-      position: absolute; left: 0.2rem; top: 0.5rem;
+      position: absolute; left: 0.2rem; top: 0.52rem;
       width: 4px; height: 4px; border-radius: 999px; background: var(--teal);
     }
 
-    /* CTA BAND */
-    .cta-band {
+    /* ─── CTA BAND ─── */
+    .cta-section {
       position: relative; z-index: 1;
-      padding: 5rem 1.5rem;
+      padding: 6rem 1.75rem;
       border-top: 1px solid var(--border);
       text-align: center;
     }
-    .cta-band-inner {
-      max-width: 560px; margin: 0 auto;
-    }
-    .cta-band h2 { margin-bottom: 1rem; }
-    .cta-band p {
-      font-size: 0.95rem; color: var(--muted); line-height: 1.7;
-      margin-bottom: 2rem;
-    }
-    .cta-actions { display: flex; gap: 0.75rem; justify-content: center; flex-wrap: wrap; }
+    .cta-inner { max-width: 580px; margin: 0 auto; }
+    .cta-inner h2 { margin-bottom: 1.1rem; }
+    .cta-inner p { font-size: 0.95rem; color: var(--muted); line-height: 1.75; margin-bottom: 2.25rem; }
+    .cta-btns { display: flex; gap: 0.75rem; justify-content: center; flex-wrap: wrap; }
+    .cta-note { margin-top: 1.25rem; font-size: 0.72rem; color: var(--soft); }
 
-    /* FOOTER */
+    /* ─── FOOTER ─── */
     footer {
       position: relative; z-index: 1;
       border-top: 1px solid var(--border);
-      padding: 2.5rem 1.5rem;
+      padding: 2.5rem 1.75rem;
     }
     .footer-inner {
       max-width: var(--max); margin: 0 auto;
       display: flex; align-items: center; justify-content: space-between;
       flex-wrap: wrap; gap: 1rem;
-      font-size: 0.78rem; color: var(--soft);
+      font-size: 0.76rem; color: var(--soft);
     }
-    .footer-logo { display: flex; align-items: center; gap: 0.5rem; font-weight: 600; color: var(--muted); }
+    .footer-brand { display: flex; align-items: center; gap: 0.6rem; font-weight: 600; color: var(--muted); font-size: 0.82rem; }
 
-    @media (max-width: 900px) {
-      .hero { grid-template-columns: 1fr; padding-top: 100px; }
+    /* ─── SCROLL ANIMATIONS ─── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.72s var(--ease), transform 0.72s var(--ease);
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: none;
+    }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+    .reveal-delay-4 { transition-delay: 0.4s; }
+    .reveal-delay-5 { transition-delay: 0.5s; }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 920px) {
+      .hero { grid-template-columns: 1fr; padding-top: 80px; gap: 40px; }
       .hero-card { display: none; }
-      .deliverables-grid { grid-template-columns: 1fr; }
+      .del-grid { grid-template-columns: 1fr; }
       .steps, .who-grid { grid-template-columns: 1fr; }
+      .stat-band { grid-template-columns: 1fr; padding: 3rem 1.75rem; }
       .nav-links { display: none; }
+      .data-strip-inner { flex-wrap: wrap; gap: 1rem; }
     }
   </style>
 </head>
 <body>
 
-<div class="hero-bg-glow"></div>
-<div class="hero-bg-glow2"></div>
+<div class="glow-tl"></div>
+<div class="glow-br"></div>
 
 <!-- NAV -->
 <header>
   <nav>
     <div class="logo">
-      <div class="logo-icon">Bf</div>
-      BRIEF<span>FOLIO</span>
+      <div class="logo-mark">Bf</div>
+      Brief<span style="color:var(--muted);font-weight:400;">folio</span>
     </div>
     <div class="nav-links">
       <a href="#deliverables">Deliverables</a>
       <a href="#how">How it works</a>
-      <a href="#who">Who it’s for</a>
+      <a href="#who">Who it&#39;s for</a>
     </div>
-    <div class="nav-cta">
-      <a class="btn btn-outline" href="mailto:hello@brieffolio.co?subject=Brieffolio+Question">Talk to us</a>
-      <a class="btn btn-solid" href="mailto:hello@brieffolio.co?subject=Pilot+Month">Book a pilot →</a>
+    <div class="nav-right">
+      <a class="btn btn-ghost" href="mailto:hello@brieffolio.co?subject=Question">Talk to us</a>
+      <a class="btn btn-teal" href="mailto:hello@brieffolio.co?subject=Pilot+Month">Book a pilot &#8594;</a>
     </div>
   </nav>
 </header>
 
 <!-- HERO -->
-<div style="position:relative;z-index:1;">
+<div class="hero-wrap">
   <div class="hero">
     <div>
-      <div class="eyebrow"><span class="eyebrow-dot"></span> Done‑for‑you market commentary</div>
-      <h1>Briefs your clients love.<br><em>Time</em> your team gets back.</h1>
-      <p class="hero-sub">Brieffolio pulls live macro and market data, writes your monthly client update in your voice, and delivers a ready‑to‑send newsletter, PDF brief, and advisor talking points — every month.</p>
-      <div class="hero-actions">
-        <a class="btn btn-solid" href="mailto:hello@brieffolio.co?subject=Pilot+Month">Book a pilot month →</a>
-        <a class="btn btn-outline" href="#deliverables">See what you get</a>
+      <div class="eyebrow reveal"><span class="eyebrow-dot"></span>Done-for-you market commentary</div>
+      <h1 class="reveal reveal-delay-1">Briefs your clients love.<br><em>Time</em> your team gets back.</h1>
+      <p class="hero-sub reveal reveal-delay-2">Brieffolio pulls live macro and market data, writes your monthly client update in your voice, and delivers a ready-to-send newsletter, PDF brief, and advisor talking points &#8212; every month.</p>
+      <div class="hero-actions reveal reveal-delay-3">
+        <a class="btn btn-teal btn-lg" href="mailto:hello@brieffolio.co?subject=Pilot+Month">Book a pilot month &#8594;</a>
+        <a class="btn btn-ghost btn-lg" href="#deliverables">See what you get</a>
       </div>
-      <div class="social-proof">
-        <div class="sp-dots">
-          <div class="sp-dot"></div>
-          <div class="sp-dot"></div>
-          <div class="sp-dot"></div>
+      <div class="trust-line reveal reveal-delay-4">
+        <div class="avatars">
+          <div class="avatar"></div>
+          <div class="avatar"></div>
+          <div class="avatar"></div>
         </div>
-        Built for RIAs that already believe in client education.
+        Built for advisory firms that already believe in client education.
       </div>
     </div>
-    <aside class="hero-card">
-      <div class="card-label">
-        April 2026 brief snapshot
-        <span class="card-badge">Live data</span>
+    <aside class="hero-card reveal reveal-delay-2">
+      <div class="card-header">
+        <div class="card-title-row">
+          <span class="card-eyebrow">Monthly snapshot</span>
+          <span class="card-title-main">April 2026 brief preview</span>
+        </div>
+        <div class="live-badge"><span class="live-dot"></span>Live data</div>
       </div>
       <div class="metrics">
         <div class="metric">
           <div class="metric-lbl">CPI (YoY)</div>
-          <div class="metric-val warn">3.8%</div>
+          <div class="metric-val a">3.8%</div>
           <div class="metric-note">Highest in nearly 3 years</div>
         </div>
         <div class="metric">
           <div class="metric-lbl">Payrolls</div>
-          <div class="metric-val neutral">+115k</div>
-          <div class="metric-note">Cooling but resilient</div>
+          <div class="metric-val t">+115k</div>
+          <div class="metric-note">Cooling but still resilient</div>
         </div>
         <div class="metric">
           <div class="metric-lbl">10Y Treasury</div>
-          <div class="metric-val warn">4.42%</div>
-          <div class="metric-note">Keeping rates elevated</div>
+          <div class="metric-val a">4.42%</div>
+          <div class="metric-note">Elevated borrowing costs</div>
         </div>
         <div class="metric">
           <div class="metric-lbl">Fed Funds</div>
-          <div class="metric-val neutral">3.50–3.75%</div>
-          <div class="metric-note">On hold, Apr meeting</div>
+          <div class="metric-val t">3.50&#8211;3.75%</div>
+          <div class="metric-note">On hold &#8212; Apr meeting</div>
         </div>
       </div>
-      <hr class="card-divider">
-      <p class="card-footer-label">We plug into BLS, FRED, and the Fed, write the story in your tone, and deliver drafts your team approves in minutes.</p>
+      <hr class="card-rule">
+      <p class="card-footer-txt">We connect to BLS, FRED, and the Fed, write the story in your tone, and deliver drafts your team can approve in minutes.</p>
     </aside>
   </div>
 </div>
 
-<!-- LOGO STRIP -->
-<div class="logo-strip">
-  <div class="logo-strip-inner">
-    <span class="strip-label">Data sources</span>
-    <div class="strip-items">
-      <span class="strip-item">BLS.gov</span>
-      <span class="strip-item">FRED / St. Louis Fed</span>
-      <span class="strip-item">Federal Reserve</span>
-      <span class="strip-item">CME FedWatch</span>
-      <span class="strip-item">U.S. Treasury</span>
+<!-- DATA SOURCES STRIP -->
+<div class="data-strip">
+  <div class="data-strip-inner">
+    <span class="ds-label">Powered by</span>
+    <div class="ds-items">
+      <span class="ds-item">BLS.gov</span>
+      <div class="ds-sep"></div>
+      <span class="ds-item">FRED / St. Louis Fed</span>
+      <div class="ds-sep"></div>
+      <span class="ds-item">Federal Reserve</span>
+      <div class="ds-sep"></div>
+      <span class="ds-item">CME FedWatch</span>
+      <div class="ds-sep"></div>
+      <span class="ds-item">U.S. Treasury</span>
     </div>
   </div>
 </div>
 
+<!-- STAT BAND -->
+<div class="stat-band">
+  <div class="stat-card reveal">
+    <div class="stat-num">&#60;1hr</div>
+    <div class="stat-label">Time spent by your team<br>reviewing each month</div>
+  </div>
+  <div class="stat-card reveal reveal-delay-2">
+    <div class="stat-num">3</div>
+    <div class="stat-label">Client-ready assets<br>delivered every cycle</div>
+  </div>
+  <div class="stat-card reveal reveal-delay-3">
+    <div class="stat-num">12+</div>
+    <div class="stat-label">Trusted data sources<br>pulled automatically</div>
+  </div>
+</div>
+
+<hr class="full-divider">
+
 <!-- DELIVERABLES -->
-<section id="deliverables">
-  <div class="section-tag">What you get every month</div>
-  <h2>One data pull.<br>Three assets. Zero blank pages.</h2>
-  <p class="section-sub">We take the macro data your CIO already watches and turn it into a tight pack your team can actually use with clients — every single month.</p>
-  <div class="deliverables-grid">
-    <div class="del-card">
-      <div class="del-icon">📧</div>
+<section id="deliverables" class="section">
+  <div class="section-kicker reveal">What you get every month</div>
+  <h2 class="reveal reveal-delay-1">One data pull.<br>Three assets. Zero blank pages.</h2>
+  <p class="section-lead reveal reveal-delay-2">We take the macro data your CIO already watches and turn it into a tight pack your team can actually use with clients &#8212; every single month.</p>
+  <div class="del-grid">
+    <div class="del-card reveal">
+      <div class="del-icon">&#128231;</div>
       <h3>Client email newsletter</h3>
-      <p>A concise, plain‑English market email written in your voice for your existing platform. No hot takes, no hyperbole.</p>
-      <div class="del-tags">
+      <p>A concise, plain-English market email written in your voice for your existing platform. No hot takes, no hyperbole.</p>
+      <div class="tag-row">
         <span class="tag">Subject line + preheader</span>
         <span class="tag">Macro recap</span>
-        <span class="tag">Client‑friendly tone</span>
+        <span class="tag">Client-friendly tone</span>
       </div>
     </div>
-    <div class="del-card">
-      <div class="del-icon">📄</div>
+    <div class="del-card reveal reveal-delay-2">
+      <div class="del-icon">&#128196;</div>
       <h3>PDF market brief</h3>
-      <p>A 2–3 page branded PDF with key charts, data, and commentary your clients can read in 5 minutes and keep on file.</p>
-      <div class="del-tags">
+      <p>A 2&#8211;3 page branded PDF with charts, data, and commentary your clients can read in 5 minutes and keep on file.</p>
+      <div class="tag-row">
         <span class="tag">Charts + datapoints</span>
         <span class="tag">Executive summary</span>
         <span class="tag">Branded layout</span>
       </div>
     </div>
-    <div class="del-card">
-      <div class="del-icon">📊</div>
+    <div class="del-card reveal reveal-delay-3">
+      <div class="del-icon">&#128202;</div>
       <h3>Advisor talking points</h3>
-      <p>An internal one‑pager your advisors can lean on for client reviews, calls, and webinars throughout the month.</p>
-      <div class="del-tags">
-        <span class="tag">Bullet‑format</span>
+      <p>An internal one-pager your advisors lean on for client reviews, calls, and webinars throughout the month.</p>
+      <div class="tag-row">
+        <span class="tag">Bullet-format</span>
         <span class="tag">Q&amp;A responses</span>
         <span class="tag">Internal only</span>
       </div>
@@ -503,90 +604,119 @@
   </div>
 </section>
 
-<hr class="divider">
+<hr class="full-divider">
 
 <!-- HOW -->
-<section id="how">
-  <div class="section-tag">How Brieffolio fits in</div>
-  <h2>We handle the lift.<br>You make the call.</h2>
-  <p class="section-sub">The goal is to turn a recurring time‑sink into a quick review step — without losing your point of view.</p>
+<section id="how" class="section">
+  <div class="section-kicker reveal">How Brieffolio fits in</div>
+  <h2 class="reveal reveal-delay-1">We handle the lift.<br>You make the call.</h2>
+  <p class="section-lead reveal reveal-delay-2">The goal is simple: turn a recurring time-sink into a quick review step &#8212; without losing your firm&#39;s point of view.</p>
   <div class="steps">
-    <div class="step">
-      <div class="step-num">STEP 01</div>
+    <div class="step reveal">
+      <div class="step-n">Step 01</div>
       <h3>We learn your voice</h3>
       <p>Share a few past commentaries, brand guidelines, and any guardrails from your CIO or compliance team.</p>
       <ul>
         <li>Map your tone and house views to our engine</li>
         <li>Agree on structure, length, and data sources</li>
-        <li>Nothing goes to clients without your sign‑off</li>
+        <li>Nothing goes to clients without your sign-off</li>
       </ul>
     </div>
-    <div class="step">
-      <div class="step-num">STEP 02</div>
+    <div class="step reveal reveal-delay-2">
+      <div class="step-n">Step 02</div>
       <h3>Monthly briefs on a schedule</h3>
       <p>Once a month we pull fresh data, generate your brief pack, and send drafts to your team for quick review.</p>
       <ul>
-        <li>Delivery windows that align with CPI, jobs, and Fed dates</li>
-        <li>Edits are easy — most teams tweak 5–10%</li>
+        <li>Delivery timed to CPI, jobs, and Fed meeting dates</li>
+        <li>Most teams tweak 5&#8211;10% before sending</li>
         <li>Advisors get a predictable, reusable toolkit every month</li>
       </ul>
     </div>
   </div>
 </section>
 
-<hr class="divider">
+<hr class="full-divider">
 
 <!-- WHO -->
-<section id="who">
-  <div class="section-tag">Who gets the most value</div>
-  <h2>Advisory teams that already care about communication.</h2>
-  <p class="section-sub">Brieffolio isn’t for firms trying to outsource their investment thinking. It’s for teams who know what they believe and want help packaging it.</p>
+<section id="who" class="section">
+  <div class="section-kicker reveal">Who gets the most value</div>
+  <h2 class="reveal reveal-delay-1">Teams that already care about communication.</h2>
+  <p class="section-lead reveal reveal-delay-2">Brieffolio isn&#39;t for firms trying to outsource their investment thinking. It&#39;s for teams who know what they believe and need help packaging it consistently.</p>
   <div class="who-grid">
-    <div class="who-card">
+    <div class="who-card reveal">
       <h3>Independent RIAs</h3>
       <p>Growing firms with limited marketing bandwidth that still want their own lens on the macro story.</p>
       <ul>
-        <li>1–25 advisors under one investment framework</li>
+        <li>1&#8211;25 advisors under one investment framework</li>
         <li>Existing commentary or review touchpoints</li>
-        <li>US‑registered, with a clear compliance contact</li>
+        <li>US-registered, with a clear compliance contact</li>
       </ul>
     </div>
-    <div class="who-card">
+    <div class="who-card reveal reveal-delay-2">
       <h3>Wealth teams inside larger platforms</h3>
-      <p>Lead advisors who want to layer client‑friendly context on top of central research while staying in their guardrails.</p>
+      <p>Lead advisors who want to layer client-friendly context on top of central research while staying in guardrails.</p>
       <ul>
-        <li>Teams leveraging home‑office research but needing local flavor</li>
-        <li>Desire for a consistent monthly voice to clients</li>
-        <li>Ready to pilot with a subset of clients or segments</li>
+        <li>Teams leveraging home-office research but wanting local flavor</li>
+        <li>Consistent monthly voice to clients</li>
+        <li>Ready to pilot with a client segment</li>
       </ul>
     </div>
   </div>
 </section>
 
-<!-- CTA BAND -->
-<div class="cta-band">
-  <div class="cta-band-inner">
-    <div class="section-tag" style="text-align:center;">Ready to pilot?</div>
-    <h2>Stop spending Fridays writing market letters.</h2>
-    <p>We’re looking for a handful of advisory firms to run a pilot month. You’ll get the full brief pack, and we’ll refine it until it sounds exactly like you.</p>
-    <div class="cta-actions">
-      <a class="btn btn-solid" href="mailto:hello@brieffolio.co?subject=Pilot+Month">Book a pilot month →</a>
-      <a class="btn btn-outline" href="mailto:hello@brieffolio.co?subject=Question">Ask a question</a>
+<!-- CTA -->
+<div class="cta-section">
+  <div class="cta-inner">
+    <div class="section-kicker reveal" style="text-align:center;">Ready to pilot?</div>
+    <h2 class="reveal reveal-delay-1">Stop spending Fridays writing market letters.</h2>
+    <p class="reveal reveal-delay-2">We&#39;re looking for a handful of advisory firms for a pilot month. You&#39;ll get the full brief pack, and we&#39;ll refine it until it sounds exactly like you.</p>
+    <div class="cta-btns reveal reveal-delay-3">
+      <a class="btn btn-teal btn-lg" href="mailto:hello@brieffolio.co?subject=Pilot+Month">Book a pilot month &#8594;</a>
+      <a class="btn btn-ghost btn-lg" href="mailto:hello@brieffolio.co?subject=Question">Ask a question</a>
     </div>
+    <p class="cta-note reveal reveal-delay-4">No commitment. Just a conversation about whether it fits your workflow.</p>
   </div>
 </div>
 
 <!-- FOOTER -->
 <footer>
   <div class="footer-inner">
-    <div class="footer-logo">
-      <div class="logo-icon" style="width:24px;height:24px;font-size:0.6rem;">Bf</div>
+    <div class="footer-brand">
+      <div class="logo-mark" style="width:26px;height:26px;font-size:0.62rem;">Bf</div>
       Brieffolio
     </div>
-    <span>Monthly market briefs for RIAs — done for you.</span>
-    <span>© 2026 Brieffolio · <a href="mailto:hello@brieffolio.co" style="color:var(--muted);">hello@brieffolio.co</a></span>
+    <span>Monthly market briefs for RIAs &#8212; done for you.</span>
+    <span>&#169; 2026 &#183; <a href="mailto:hello@brieffolio.co" style="color:var(--muted);">hello@brieffolio.co</a></span>
   </div>
 </footer>
+
+<!-- SCROLL REVEAL SCRIPT -->
+<script>
+  (function() {
+    var els = document.querySelectorAll('.reveal');
+    var io = new IntersectionObserver(function(entries) {
+      entries.forEach(function(e) {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          io.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+    els.forEach(function(el) { io.observe(el); });
+
+    // Counter animation for stat nums
+    var statNums = document.querySelectorAll('.stat-num');
+    var statIo = new IntersectionObserver(function(entries) {
+      entries.forEach(function(e) {
+        if (e.isIntersecting) {
+          e.target.style.animation = 'countUp 0.6s var(--ease) forwards';
+          statIo.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.5 });
+    statNums.forEach(function(el) { statIo.observe(el); });
+  })();
+</script>
 
 </body>
 </html>
