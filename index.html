@@ -417,7 +417,7 @@
       <h2 id="modalTitle">Book your pilot month</h2>
       <p class="modal-sub">Tell us a bit about your firm and what you need. We'll reach out within one business day to set things up.</p>
 
-      <form id="pilotForm" action="https://formspree.io/f/hello@brieffolio.co" method="POST">
+      <form id="pilotForm">
         <div class="form-row">
           <div class="form-group">
             <label for="firstName">First name</label>
@@ -499,7 +499,7 @@
       <a href="#who">Who it's for</a>
     </div>
     <div class="nav-right">
-      <a class="btn btn-ghost nav-ghost-hide" href="mailto:hello@brieffolio.co?subject=Question">Talk to us</a>
+      <a class="btn btn-ghost nav-ghost-hide" href="mailto:brieffolio@gmail.com?subject=Question">Talk to us</a>
       <button class="btn btn-teal" onclick="openModal()">Book a pilot &#8594;</button>
     </div>
   </nav>
@@ -677,7 +677,7 @@
     <p class="reveal reveal-delay-2">We're looking for a handful of teams for a pilot month. You'll get the full communication pack, and we'll refine it until it sounds exactly like your firm.</p>
     <div class="cta-btns reveal reveal-delay-3">
       <button class="btn btn-teal btn-lg" onclick="openModal()">Book a pilot month &#8594;</button>
-      <a class="btn btn-ghost btn-lg" href="mailto:hello@brieffolio.co?subject=Question">Ask a question</a>
+      <a class="btn btn-ghost btn-lg" href="mailto:brieffolio@gmail.com?subject=Question">Ask a question</a>
     </div>
     <p class="cta-note reveal reveal-delay-4">No commitment. Just a conversation about whether it fits your workflow.</p>
   </div>
@@ -690,12 +690,11 @@
       Brieffolio
     </div>
     <span>Monthly market briefs for advisory, CRE, and client-facing teams.</span>
-    <span>&#169; 2026 &#183; <a href="mailto:hello@brieffolio.co" style="color:var(--muted);">hello@brieffolio.co</a></span>
+    <span>&#169; 2026 &#183; <a href="mailto:brieffolio@gmail.com" style="color:var(--muted);">brieffolio@gmail.com</a></span>
   </div>
 </footer>
 
 <script>
-  // Reveal on scroll
   (function(){
     var io = new IntersectionObserver(function(entries){
       entries.forEach(function(e){
@@ -705,7 +704,6 @@
     document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
   })();
 
-  // Modal
   function openModal() {
     document.getElementById('pilotModal').classList.add('open');
     document.body.style.overflow = 'hidden';
@@ -722,13 +720,12 @@
     if (e.key === 'Escape') closeModal();
   });
 
-  // Form submit — show success state, send via mailto fallback
   document.getElementById('pilotForm').addEventListener('submit', function(e) {
     e.preventDefault();
     var data = new FormData(this);
     var body = [];
     data.forEach(function(v, k) { if(v) body.push(k + ': ' + v); });
-    var mailto = 'mailto:hello@brieffolio.co?subject=Pilot+Application&body=' + encodeURIComponent(body.join('\n'));
+    var mailto = 'mailto:brieffolio@gmail.com?subject=Pilot+Application&body=' + encodeURIComponent(body.join('\n'));
     window.location.href = mailto;
     document.getElementById('modalForm').style.display = 'none';
     document.getElementById('modalSuccess').classList.add('show');
