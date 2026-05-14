@@ -54,11 +54,16 @@
       0%,100% { box-shadow: 0 0 28px rgba(45,212,191,0.45), 0 0 0 1px rgba(45,212,191,0.18); }
       50% { box-shadow: 0 0 48px rgba(45,212,191,0.8), 0 0 0 1px rgba(45,212,191,0.4); }
     }
+
+    /* NAV LINKS — active state */
     .nav-links { display: flex; align-items: center; gap: 2.25rem; font-size: 0.82rem; font-weight: 450; color: var(--muted); }
     .nav-links a { transition: color 0.18s; position: relative; padding-bottom: 2px; }
-    .nav-links a::after { content: ''; position: absolute; left: 0; bottom: -2px; width: 0; height: 1px; background: var(--teal); transition: width 0.22s var(--ease); }
+    .nav-links a::after { content: ''; position: absolute; left: 0; bottom: -2px; width: 0; height: 1px; background: var(--teal); transition: width 0.28s var(--ease); }
     .nav-links a:hover { color: var(--text); }
     .nav-links a:hover::after { width: 100%; }
+    .nav-links a.nav-active { color: var(--text); }
+    .nav-links a.nav-active::after { width: 100%; }
+
     .nav-right { display: flex; align-items: center; gap: 0.6rem; }
     .btn { display: inline-flex; align-items: center; justify-content: center; gap: 0.35rem; padding: 0.48rem 1.2rem; border-radius: 999px; font-size: 0.8rem; font-weight: 500; border: 1px solid transparent; transition: all 0.2s var(--ease); cursor: pointer; white-space: nowrap; background: none; font-family: var(--font); }
     .btn-ghost { border-color: var(--border2); color: var(--muted); background: rgba(255,255,255,0.025); }
@@ -89,6 +94,7 @@
     .form-group textarea { resize: vertical; min-height: 80px; }
     .form-submit { width: 100%; margin-top: 0.5rem; padding: 0.8rem 1.5rem; background: var(--teal); color: #011a18; border: none; border-radius: 999px; font-size: 0.88rem; font-weight: 650; font-family: var(--font); cursor: pointer; box-shadow: 0 0 26px rgba(45,212,191,0.38); transition: background 0.18s, box-shadow 0.18s, transform 0.18s var(--ease); }
     .form-submit:hover { background: #5eead4; box-shadow: 0 0 44px rgba(45,212,191,0.6); transform: translateY(-1px); }
+    .form-submit:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
     .form-note { font-size: 0.7rem; color: var(--soft); text-align: center; margin-top: 0.85rem; }
     .modal-success { display: none; text-align: center; padding: 1rem 0; }
     .modal-success.show { display: block; }
@@ -257,7 +263,9 @@
       <div class="modal-kicker">Pilot program</div>
       <h2 id="modalTitle">Book your pilot month</h2>
       <p class="modal-sub">Tell us a bit about your firm and what you need. We'll reach out within one business day to set things up.</p>
-      <form id="pilotForm">
+      <!-- ACTION points to Formspree — replace xyzabcde with your real Formspree form ID -->
+      <form id="pilotForm" action="https://formspree.io/f/xyzabcde" method="POST">
+        <input type="hidden" name="_subject" value="Brieffolio Pilot Application" />
         <div class="form-row">
           <div class="form-group"><label for="firstName">First name</label><input type="text" id="firstName" name="firstName" placeholder="Jane" required /></div>
           <div class="form-group"><label for="lastName">Last name</label><input type="text" id="lastName" name="lastName" placeholder="Smith" required /></div>
@@ -292,7 +300,7 @@
           <label for="notes">Anything else we should know? <span style="font-weight:400;text-transform:none;letter-spacing:0;color:var(--soft)">(optional)</span></label>
           <textarea id="notes" name="notes" placeholder="Tone preferences, existing tools, audience size, questions&hellip;"></textarea>
         </div>
-        <button type="submit" class="form-submit">Submit &rarr;</button>
+        <button type="submit" class="form-submit" id="submitBtn">Submit &rarr;</button>
         <p class="form-note">No commitment. We'll follow up within one business day.</p>
       </form>
     </div>
@@ -310,11 +318,11 @@
       <div class="logo-mark"><span>Bf</span></div>
       Brief<span style="color:var(--muted);font-weight:400;">folio</span>
     </div>
-    <div class="nav-links">
-      <a href="#ai-engine">AI Engine</a>
-      <a href="#deliverables">Deliverables</a>
-      <a href="#how">How it works</a>
-      <a href="#who">Who it's for</a>
+    <div class="nav-links" id="navLinks">
+      <a href="#ai-engine" data-section="ai-engine">AI Engine</a>
+      <a href="#deliverables" data-section="deliverables">Deliverables</a>
+      <a href="#how" data-section="how">How it works</a>
+      <a href="#who" data-section="who">Who it's for</a>
     </div>
     <div class="nav-right">
       <a class="btn btn-ghost nav-ghost-hide" href="mailto:brieffolio@gmail.com?subject=Question">Talk to us</a>
@@ -438,31 +446,11 @@
     <div class="ai-pipeline reveal reveal-delay-2">
       <div class="pipeline-label">AI workflow &mdash; every month</div>
       <div class="pipeline-steps">
-        <div class="p-step">
-          <span class="p-num">01</span>
-          <span class="p-text">Ingest live macro &amp; market data</span>
-          <span class="p-badge auto">Auto</span>
-        </div>
-        <div class="p-step">
-          <span class="p-num">02</span>
-          <span class="p-text">Identify the key narrative signals</span>
-          <span class="p-badge ai">AI</span>
-        </div>
-        <div class="p-step">
-          <span class="p-num">03</span>
-          <span class="p-text">Draft email, PDF brief &amp; talking points in your voice</span>
-          <span class="p-badge ai">AI</span>
-        </div>
-        <div class="p-step">
-          <span class="p-num">04</span>
-          <span class="p-text">Deliver draft pack for your team to review</span>
-          <span class="p-badge auto">Auto</span>
-        </div>
-        <div class="p-step">
-          <span class="p-num">05</span>
-          <span class="p-text">Your team approves &amp; sends</span>
-          <span class="p-badge human">You</span>
-        </div>
+        <div class="p-step"><span class="p-num">01</span><span class="p-text">Ingest live macro &amp; market data</span><span class="p-badge auto">Auto</span></div>
+        <div class="p-step"><span class="p-num">02</span><span class="p-text">Identify the key narrative signals</span><span class="p-badge ai">AI</span></div>
+        <div class="p-step"><span class="p-num">03</span><span class="p-text">Draft email, PDF brief &amp; talking points in your voice</span><span class="p-badge ai">AI</span></div>
+        <div class="p-step"><span class="p-num">04</span><span class="p-text">Deliver draft pack for your team to review</span><span class="p-badge auto">Auto</span></div>
+        <div class="p-step"><span class="p-num">05</span><span class="p-text">Your team approves &amp; sends</span><span class="p-badge human">You</span></div>
       </div>
       <p class="pipeline-note">Average review time under one hour. Most teams send with minor edits or none at all.</p>
     </div>
@@ -481,31 +469,19 @@
       <div class="del-icon"><svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 7l10 7 10-7"/></svg></div>
       <h3>AI-drafted client email</h3>
       <p>A concise, plain-English market update written in your voice — ready to drop into your CRM, email platform, or investor list. Subject line, preheader, and all.</p>
-      <div class="tag-row">
-        <span class="tag">Voice-matched copy</span>
-        <span class="tag">Macro recap</span>
-        <span class="tag">Send-ready format</span>
-      </div>
+      <div class="tag-row"><span class="tag">Voice-matched copy</span><span class="tag">Macro recap</span><span class="tag">Send-ready format</span></div>
     </div>
     <div class="del-card reveal reveal-delay-2">
       <div class="del-icon"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg></div>
       <h3>Branded PDF market brief</h3>
       <p>A 2&ndash;3 page AI-compiled brief with live data, charts, and narrative commentary. Clients keep it on file. Your firm looks like it has a full research team behind it.</p>
-      <div class="tag-row">
-        <span class="tag">Live data + charts</span>
-        <span class="tag">Executive summary</span>
-        <span class="tag">Branded layout</span>
-      </div>
+      <div class="tag-row"><span class="tag">Live data + charts</span><span class="tag">Executive summary</span><span class="tag">Branded layout</span></div>
     </div>
     <div class="del-card reveal reveal-delay-3">
       <div class="del-icon"><svg viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/><line x1="2" y1="20" x2="22" y2="20"/></svg></div>
       <h3>Advisor talking points</h3>
       <p>An AI-generated internal one-pager your team uses for client calls, investor updates, and webinars throughout the month. Consistent messaging, no guesswork.</p>
-      <div class="tag-row">
-        <span class="tag">Bullet-format</span>
-        <span class="tag">Q&amp;A responses</span>
-        <span class="tag">Internal use</span>
-      </div>
+      <div class="tag-row"><span class="tag">Bullet-format</span><span class="tag">Q&amp;A responses</span><span class="tag">Internal use</span></div>
     </div>
   </div>
 </section>
@@ -546,16 +522,16 @@
 <!-- WHO IT'S FOR -->
 <section id="who" class="section">
   <div class="section-kicker reveal">Who gets the most value</div>
-  <h2 class="reveal reveal-delay-1">For teams that communicate markets — but can't afford a research desk.</h2>
-  <p class="section-lead reveal reveal-delay-2">Brieffolio gives smaller and mid-size firms the AI infrastructure that used to require an entire content and research team.</p>
+  <h2 class="reveal reveal-delay-1">For firms that move markets — and want their communications to reflect that.</h2>
+  <p class="section-lead reveal reveal-delay-2">Whether you're managing billions or building your next fund, Brieffolio gives your team the AI infrastructure to communicate like the top-tier firm you are — without dedicating a team to it.</p>
   <div class="who-grid">
     <div class="who-card reveal">
       <h3>Advisory and wealth teams</h3>
-      <p>Independent RIAs and advisor teams that want to stay sharp with clients using AI-generated, data-backed market commentary — without a full-time content hire.</p>
+      <p>Sophisticated RIAs and advisor teams that hold themselves to a high standard of client communication — and want AI to maintain that quality consistently, every single month.</p>
       <ul>
         <li>Replace manual monthly writing with AI drafts</li>
         <li>Consistent voice across all client touchpoints</li>
-        <li>Sound like a firm 10x your size</li>
+        <li>Institutional-quality content at the speed of a startup</li>
       </ul>
     </div>
     <div class="who-card reveal reveal-delay-2">
@@ -596,28 +572,73 @@
 </footer>
 
 <script>
+  // Scroll reveal
   (function(){
     var io = new IntersectionObserver(function(entries){
-      entries.forEach(function(e){
-        if(e.isIntersecting){ e.target.classList.add('visible'); io.unobserve(e.target); }
-      });
+      entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('visible'); io.unobserve(e.target); } });
     }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
     document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
   })();
+
+  // Modal
   function openModal() { document.getElementById('pilotModal').classList.add('open'); document.body.style.overflow = 'hidden'; }
   function closeModal() { document.getElementById('pilotModal').classList.remove('open'); document.body.style.overflow = ''; }
   document.getElementById('modalClose').addEventListener('click', closeModal);
   document.getElementById('pilotModal').addEventListener('click', function(e){ if(e.target===this) closeModal(); });
   document.addEventListener('keydown', function(e){ if(e.key==='Escape') closeModal(); });
+
+  // Formspree AJAX submit — no mailto, no redirect
   document.getElementById('pilotForm').addEventListener('submit', function(e){
     e.preventDefault();
-    var data = new FormData(this), body = [];
-    data.forEach(function(v,k){ if(v) body.push(k+': '+v); });
-    window.location.href = 'mailto:brieffolio@gmail.com?subject=Pilot+Application&body='+encodeURIComponent(body.join('\n'));
-    document.getElementById('modalForm').style.display = 'none';
-    document.getElementById('modalSuccess').classList.add('show');
-    setTimeout(closeModal, 4000);
+    var btn = document.getElementById('submitBtn');
+    btn.disabled = true;
+    btn.textContent = 'Sending…';
+    fetch(this.action, {
+      method: 'POST',
+      body: new FormData(this),
+      headers: { 'Accept': 'application/json' }
+    }).then(function(res){
+      if(res.ok){
+        document.getElementById('modalForm').style.display = 'none';
+        document.getElementById('modalSuccess').classList.add('show');
+        setTimeout(closeModal, 4500);
+      } else {
+        btn.disabled = false;
+        btn.textContent = 'Submit →';
+        alert('Something went wrong. Please email us directly at brieffolio@gmail.com');
+      }
+    }).catch(function(){
+      btn.disabled = false;
+      btn.textContent = 'Submit →';
+      alert('Network error. Please email us directly at brieffolio@gmail.com');
+    });
   });
+
+  // Active nav highlighting on scroll
+  (function(){
+    var sections = ['ai-engine','deliverables','how','who'];
+    var navLinks = document.querySelectorAll('#navLinks a[data-section]');
+    var headerH = 64;
+
+    function setActive(id){
+      navLinks.forEach(function(a){
+        a.classList.toggle('nav-active', a.dataset.section === id);
+      });
+    }
+
+    function onScroll(){
+      var scrollY = window.scrollY + headerH + 40;
+      var active = null;
+      sections.forEach(function(id){
+        var el = document.getElementById(id);
+        if(el && el.offsetTop <= scrollY) active = id;
+      });
+      setActive(active);
+    }
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+  })();
 </script>
 </body>
 </html>
