@@ -181,7 +181,7 @@
     .form-group input,
     .form-group select,
     .form-group textarea {
-      background: rgba(255,255,255,0.04);
+      background: #0d1626;
       border: 1px solid var(--border2);
       border-radius: 0.65rem;
       padding: 0.65rem 0.9rem;
@@ -192,7 +192,24 @@
       transition: border-color 0.18s, box-shadow 0.18s;
       width: 100%;
     }
-    .form-group select { appearance: none; cursor: pointer; }
+    .form-group select {
+      appearance: none;
+      -webkit-appearance: none;
+      cursor: pointer;
+      background-color: #0d1626;
+      color: var(--text);
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23768494' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 0.9rem center;
+      padding-right: 2.2rem;
+    }
+    .form-group select option {
+      background-color: #0d1626;
+      color: #e8edf6;
+    }
+    .form-group select option:disabled {
+      color: #3e4f62;
+    }
     .form-group input::placeholder,
     .form-group textarea::placeholder { color: var(--soft); }
     .form-group input:focus,
