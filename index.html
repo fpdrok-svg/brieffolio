@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Brieffolio — Monthly Market Briefs for Advisory & CRE Teams</title>
+  <title>Brieffolio — AI-Powered Market Briefs for Advisory & CRE Teams</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
@@ -28,66 +28,19 @@
       --ease: cubic-bezier(0.22, 1, 0.36, 1);
       --max: 1080px;
     }
-    body {
-      font-family: var(--font);
-      background: var(--bg);
-      color: var(--text);
-      -webkit-font-smoothing: antialiased;
-      overflow-x: hidden;
-      line-height: 1.6;
-    }
+    body { font-family: var(--font); background: var(--bg); color: var(--text); -webkit-font-smoothing: antialiased; overflow-x: hidden; line-height: 1.6; }
     a { text-decoration: none; color: inherit; }
     img { max-width: 100%; display: block; }
 
-    .glow-tl {
-      position: fixed; top: -280px; left: -280px; width: 800px; height: 800px;
-      background: radial-gradient(circle, rgba(45,212,191,0.055) 0%, transparent 68%);
-      pointer-events: none; z-index: 0;
-    }
-    .glow-br {
-      position: fixed; bottom: -300px; right: -300px; width: 900px; height: 900px;
-      background: radial-gradient(circle, rgba(96,165,250,0.04) 0%, transparent 68%);
-      pointer-events: none; z-index: 0;
-    }
+    .glow-tl { position: fixed; top: -280px; left: -280px; width: 800px; height: 800px; background: radial-gradient(circle, rgba(45,212,191,0.055) 0%, transparent 68%); pointer-events: none; z-index: 0; }
+    .glow-br { position: fixed; bottom: -300px; right: -300px; width: 900px; height: 900px; background: radial-gradient(circle, rgba(96,165,250,0.04) 0%, transparent 68%); pointer-events: none; z-index: 0; }
 
-    header {
-      position: fixed; inset: 0 0 auto; z-index: 200;
-      background: rgba(2,4,10,0.82);
-      backdrop-filter: blur(22px) saturate(180%);
-      border-bottom: 1px solid var(--border);
-    }
-    nav {
-      max-width: var(--max); margin: 0 auto; padding: 0 1.75rem; height: 64px;
-      display: flex; align-items: center; justify-content: space-between;
-    }
-    .logo {
-      display: flex; align-items: center; gap: 11px;
-      font-size: 0.85rem; font-weight: 700; letter-spacing: 0.22em;
-      text-transform: uppercase; color: var(--text); flex-shrink: 0;
-    }
-    .logo-mark {
-      position: relative;
-      width: 34px; height: 34px; flex-shrink: 0;
-      display: grid; place-items: center;
-    }
-    .logo-mark::before {
-      content: '';
-      position: absolute; inset: 0;
-      background: conic-gradient(from 190deg at 38% 42%, #2dd4bf 0%, #60a5fa 40%, #818cf8 70%, #2dd4bf 100%);
-      border-radius: 42% 58% 50% 50% / 44% 44% 56% 56%;
-      box-shadow: 0 0 28px rgba(45,212,191,0.45), 0 0 0 1px rgba(45,212,191,0.18);
-      animation: blob-morph 6s ease-in-out infinite, blob-glow 4s ease-in-out infinite;
-      transform-origin: center;
-    }
-    .logo-mark span {
-      position: relative;
-      z-index: 1;
-      font-size: 0.72rem;
-      font-weight: 800;
-      color: #010c0b;
-      line-height: 1;
-      transform: none !important;
-    }
+    header { position: fixed; inset: 0 0 auto; z-index: 200; background: rgba(2,4,10,0.82); backdrop-filter: blur(22px) saturate(180%); border-bottom: 1px solid var(--border); }
+    nav { max-width: var(--max); margin: 0 auto; padding: 0 1.75rem; height: 64px; display: flex; align-items: center; justify-content: space-between; }
+    .logo { display: flex; align-items: center; gap: 11px; font-size: 0.85rem; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: var(--text); flex-shrink: 0; }
+    .logo-mark { position: relative; width: 34px; height: 34px; flex-shrink: 0; display: grid; place-items: center; }
+    .logo-mark::before { content: ''; position: absolute; inset: 0; background: conic-gradient(from 190deg at 38% 42%, #2dd4bf 0%, #60a5fa 40%, #818cf8 70%, #2dd4bf 100%); border-radius: 42% 58% 50% 50% / 44% 44% 56% 56%; box-shadow: 0 0 28px rgba(45,212,191,0.45), 0 0 0 1px rgba(45,212,191,0.18); animation: blob-morph 6s ease-in-out infinite, blob-glow 4s ease-in-out infinite; transform-origin: center; }
+    .logo-mark span { position: relative; z-index: 1; font-size: 0.72rem; font-weight: 800; color: #010c0b; line-height: 1; transform: none !important; }
     @keyframes blob-morph {
       0%   { border-radius: 42% 58% 50% 50% / 44% 44% 56% 56%; transform: rotate(0deg); }
       15%  { border-radius: 55% 45% 60% 40% / 50% 60% 40% 50%; transform: rotate(6deg); }
@@ -101,212 +54,76 @@
       0%,100% { box-shadow: 0 0 28px rgba(45,212,191,0.45), 0 0 0 1px rgba(45,212,191,0.18); }
       50% { box-shadow: 0 0 48px rgba(45,212,191,0.8), 0 0 0 1px rgba(45,212,191,0.4); }
     }
-    .nav-links {
-      display: flex; align-items: center; gap: 2.25rem;
-      font-size: 0.82rem; font-weight: 450; color: var(--muted);
-    }
+    .nav-links { display: flex; align-items: center; gap: 2.25rem; font-size: 0.82rem; font-weight: 450; color: var(--muted); }
     .nav-links a { transition: color 0.18s; position: relative; padding-bottom: 2px; }
-    .nav-links a::after {
-      content: ''; position: absolute; left: 0; bottom: -2px;
-      width: 0; height: 1px; background: var(--teal);
-      transition: width 0.22s var(--ease);
-    }
+    .nav-links a::after { content: ''; position: absolute; left: 0; bottom: -2px; width: 0; height: 1px; background: var(--teal); transition: width 0.22s var(--ease); }
     .nav-links a:hover { color: var(--text); }
     .nav-links a:hover::after { width: 100%; }
     .nav-right { display: flex; align-items: center; gap: 0.6rem; }
-    .btn {
-      display: inline-flex; align-items: center; justify-content: center; gap: 0.35rem;
-      padding: 0.48rem 1.2rem; border-radius: 999px;
-      font-size: 0.8rem; font-weight: 500; border: 1px solid transparent;
-      transition: all 0.2s var(--ease); cursor: pointer; white-space: nowrap;
-      background: none; font-family: var(--font);
-    }
+    .btn { display: inline-flex; align-items: center; justify-content: center; gap: 0.35rem; padding: 0.48rem 1.2rem; border-radius: 999px; font-size: 0.8rem; font-weight: 500; border: 1px solid transparent; transition: all 0.2s var(--ease); cursor: pointer; white-space: nowrap; background: none; font-family: var(--font); }
     .btn-ghost { border-color: var(--border2); color: var(--muted); background: rgba(255,255,255,0.025); }
     .btn-ghost:hover { border-color: rgba(255,255,255,0.24); color: var(--text); }
-    .btn-teal {
-      background: var(--teal); color: #011a18; font-weight: 650;
-      box-shadow: 0 0 26px rgba(45,212,191,0.38);
-    }
+    .btn-teal { background: var(--teal); color: #011a18; font-weight: 650; box-shadow: 0 0 26px rgba(45,212,191,0.38); }
     .btn-teal:hover { background: #5eead4; box-shadow: 0 0 44px rgba(45,212,191,0.6); transform: translateY(-1px); }
     .btn-lg { padding: 0.72rem 1.75rem; font-size: 0.9rem; }
 
-    /* ── MODAL ── */
-    .modal-overlay {
-      display: none;
-      position: fixed; inset: 0; z-index: 900;
-      background: rgba(2,4,10,0.82);
-      backdrop-filter: blur(10px);
-      align-items: center; justify-content: center;
-      padding: 1.5rem;
-    }
+    /* MODAL */
+    .modal-overlay { display: none; position: fixed; inset: 0; z-index: 900; background: rgba(2,4,10,0.82); backdrop-filter: blur(10px); align-items: center; justify-content: center; padding: 1.5rem; }
     .modal-overlay.open { display: flex; }
-    .modal {
-      background: #0a1020;
-      border: 1px solid rgba(45,212,191,0.18);
-      border-radius: 1.6rem;
-      padding: 2.5rem;
-      width: 100%; max-width: 520px;
-      position: relative;
-      box-shadow: 0 40px 100px rgba(0,0,0,0.9), 0 0 0 1px rgba(45,212,191,0.07) inset;
-      animation: modal-in 0.32s var(--ease);
-    }
-    @keyframes modal-in {
-      from { opacity: 0; transform: translateY(24px) scale(0.97); }
-      to   { opacity: 1; transform: none; }
-    }
-    .modal-close {
-      position: absolute; top: 1.25rem; right: 1.25rem;
-      background: none; border: none; cursor: pointer;
-      color: var(--soft); font-size: 1.3rem; line-height: 1;
-      transition: color 0.15s;
-    }
+    .modal { background: #0a1020; border: 1px solid rgba(45,212,191,0.18); border-radius: 1.6rem; padding: 2.5rem; width: 100%; max-width: 520px; position: relative; box-shadow: 0 40px 100px rgba(0,0,0,0.9), 0 0 0 1px rgba(45,212,191,0.07) inset; animation: modal-in 0.32s var(--ease); }
+    @keyframes modal-in { from { opacity: 0; transform: translateY(24px) scale(0.97); } to { opacity: 1; transform: none; } }
+    .modal-close { position: absolute; top: 1.25rem; right: 1.25rem; background: none; border: none; cursor: pointer; color: var(--soft); font-size: 1.3rem; line-height: 1; transition: color 0.15s; }
     .modal-close:hover { color: var(--text); }
-    .modal-kicker {
-      font-size: 0.65rem; font-weight: 700; letter-spacing: 0.28em;
-      text-transform: uppercase; color: var(--teal); margin-bottom: 0.6rem;
-    }
-    .modal h2 {
-      font-family: var(--serif); font-size: 1.65rem; letter-spacing: -0.03em;
-      line-height: 1.12; margin-bottom: 0.5rem; font-weight: 400;
-    }
-    .modal-sub {
-      font-size: 0.82rem; color: var(--muted); margin-bottom: 1.75rem; line-height: 1.6;
-    }
+    .modal-kicker { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.28em; text-transform: uppercase; color: var(--teal); margin-bottom: 0.6rem; }
+    .modal h2 { font-family: var(--serif); font-size: 1.65rem; letter-spacing: -0.03em; line-height: 1.12; margin-bottom: 0.5rem; font-weight: 400; }
+    .modal-sub { font-size: 0.82rem; color: var(--muted); margin-bottom: 1.75rem; line-height: 1.6; }
     .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 0.85rem; }
     .form-group { display: flex; flex-direction: column; gap: 0.35rem; margin-bottom: 0.85rem; }
-    .form-group label {
-      font-size: 0.7rem; font-weight: 600; letter-spacing: 0.12em;
-      text-transform: uppercase; color: var(--soft);
-    }
-    .form-group input,
-    .form-group select,
-    .form-group textarea {
-      background: #0d1626;
-      border: 1px solid var(--border2);
-      border-radius: 0.65rem;
-      padding: 0.65rem 0.9rem;
-      font-size: 0.84rem;
-      color: var(--text);
-      font-family: var(--font);
-      outline: none;
-      transition: border-color 0.18s, box-shadow 0.18s;
-      width: 100%;
-    }
-    .form-group select {
-      appearance: none;
-      -webkit-appearance: none;
-      cursor: pointer;
-      background-color: #0d1626;
-      color: var(--text);
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23768494' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
-      background-repeat: no-repeat;
-      background-position: right 0.9rem center;
-      padding-right: 2.2rem;
-    }
-    .form-group select option {
-      background-color: #0d1626;
-      color: #e8edf6;
-    }
-    .form-group select option:disabled {
-      color: #3e4f62;
-    }
-    .form-group input::placeholder,
-    .form-group textarea::placeholder { color: var(--soft); }
-    .form-group input:focus,
-    .form-group select:focus,
-    .form-group textarea:focus {
-      border-color: rgba(45,212,191,0.45);
-      box-shadow: 0 0 0 3px rgba(45,212,191,0.08);
-    }
+    .form-group label { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--soft); }
+    .form-group input, .form-group select, .form-group textarea { background: #0d1626; border: 1px solid var(--border2); border-radius: 0.65rem; padding: 0.65rem 0.9rem; font-size: 0.84rem; color: var(--text); font-family: var(--font); outline: none; transition: border-color 0.18s, box-shadow 0.18s; width: 100%; }
+    .form-group select { appearance: none; -webkit-appearance: none; cursor: pointer; background-color: #0d1626; color: var(--text); background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23768494' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 0.9rem center; padding-right: 2.2rem; }
+    .form-group select option { background-color: #0d1626; color: #e8edf6; }
+    .form-group select option:disabled { color: #3e4f62; }
+    .form-group input::placeholder, .form-group textarea::placeholder { color: var(--soft); }
+    .form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: rgba(45,212,191,0.45); box-shadow: 0 0 0 3px rgba(45,212,191,0.08); }
     .form-group textarea { resize: vertical; min-height: 80px; }
-    .form-submit {
-      width: 100%; margin-top: 0.5rem;
-      padding: 0.8rem 1.5rem;
-      background: var(--teal); color: #011a18;
-      border: none; border-radius: 999px;
-      font-size: 0.88rem; font-weight: 650;
-      font-family: var(--font);
-      cursor: pointer;
-      box-shadow: 0 0 26px rgba(45,212,191,0.38);
-      transition: background 0.18s, box-shadow 0.18s, transform 0.18s var(--ease);
-    }
+    .form-submit { width: 100%; margin-top: 0.5rem; padding: 0.8rem 1.5rem; background: var(--teal); color: #011a18; border: none; border-radius: 999px; font-size: 0.88rem; font-weight: 650; font-family: var(--font); cursor: pointer; box-shadow: 0 0 26px rgba(45,212,191,0.38); transition: background 0.18s, box-shadow 0.18s, transform 0.18s var(--ease); }
     .form-submit:hover { background: #5eead4; box-shadow: 0 0 44px rgba(45,212,191,0.6); transform: translateY(-1px); }
     .form-note { font-size: 0.7rem; color: var(--soft); text-align: center; margin-top: 0.85rem; }
     .modal-success { display: none; text-align: center; padding: 1rem 0; }
     .modal-success.show { display: block; }
-    .modal-success .check {
-      width: 56px; height: 56px; border-radius: 999px;
-      background: rgba(45,212,191,0.1); border: 1px solid rgba(45,212,191,0.3);
-      display: flex; align-items: center; justify-content: center;
-      margin: 0 auto 1.25rem;
-      font-size: 1.5rem;
-    }
+    .modal-success .check { width: 56px; height: 56px; border-radius: 999px; background: rgba(45,212,191,0.1); border: 1px solid rgba(45,212,191,0.3); display: flex; align-items: center; justify-content: center; margin: 0 auto 1.25rem; font-size: 1.5rem; }
     .modal-success h3 { font-family: var(--serif); font-size: 1.5rem; margin-bottom: 0.5rem; }
     .modal-success p { font-size: 0.85rem; color: var(--muted); line-height: 1.65; }
-    @media (max-width: 540px) {
-      .modal { padding: 1.75rem 1.25rem; }
-      .form-row { grid-template-columns: 1fr; }
-    }
-    /* ── END MODAL ── */
+    @media (max-width: 540px) { .modal { padding: 1.75rem 1.25rem; } .form-row { grid-template-columns: 1fr; } }
 
+    /* HERO */
     .hero-wrap { position: relative; z-index: 1; padding-top: 64px; }
-    .hero {
-      max-width: var(--max); margin: 0 auto; padding: 100px 1.75rem 80px;
-      display: grid; grid-template-columns: 1fr 430px; gap: 64px; align-items: center;
-    }
-    .eyebrow {
-      display: inline-flex; align-items: center; gap: 0.55rem;
-      font-size: 0.7rem; font-weight: 600; letter-spacing: 0.3em; text-transform: uppercase;
-      color: var(--teal); margin-bottom: 1.5rem; padding: 0.3rem 0.9rem;
-      border: 1px solid rgba(45,212,191,0.25); border-radius: 999px; background: rgba(45,212,191,0.05);
-    }
+    .hero { max-width: var(--max); margin: 0 auto; padding: 100px 1.75rem 80px; display: grid; grid-template-columns: 1fr 430px; gap: 64px; align-items: center; }
+    .eyebrow { display: inline-flex; align-items: center; gap: 0.55rem; font-size: 0.7rem; font-weight: 600; letter-spacing: 0.3em; text-transform: uppercase; color: var(--teal); margin-bottom: 1.5rem; padding: 0.3rem 0.9rem; border: 1px solid rgba(45,212,191,0.25); border-radius: 999px; background: rgba(45,212,191,0.05); }
     .eyebrow-dot { width: 5px; height: 5px; border-radius: 999px; background: var(--teal); animation: blink 2s ease-in-out infinite; }
     @keyframes blink { 0%,100% { opacity: 1; } 50% { opacity: 0.3; } }
-    h1 {
-      font-family: var(--serif); font-size: clamp(2.7rem, 4.8vw, 3.8rem);
-      line-height: 1.04; letter-spacing: -0.04em; margin-bottom: 1.5rem; font-weight: 400;
-    }
+    h1 { font-family: var(--serif); font-size: clamp(2.7rem, 4.8vw, 3.8rem); line-height: 1.04; letter-spacing: -0.04em; margin-bottom: 1.5rem; font-weight: 400; }
     h1 em { font-style: italic; color: var(--teal); }
-    .hero-sub {
-      font-size: 1.05rem; line-height: 1.75; color: var(--muted);
-      max-width: 34rem; margin-bottom: 2.25rem; font-weight: 350;
-    }
+    .hero-sub { font-size: 1.05rem; line-height: 1.75; color: var(--muted); max-width: 34rem; margin-bottom: 2.25rem; font-weight: 350; }
     .hero-actions { display: flex; gap: 0.75rem; flex-wrap: wrap; margin-bottom: 2.5rem; }
     .trust-line { display: flex; align-items: center; gap: 0.75rem; font-size: 0.76rem; color: var(--soft); }
     .avatars { display: flex; }
-    .avatar {
-      width: 24px; height: 24px; border-radius: 999px; border: 2px solid var(--bg); margin-left: -7px;
-      background: linear-gradient(135deg, #3b82f6, #2dd4bf);
-    }
+    .avatar { width: 24px; height: 24px; border-radius: 999px; border: 2px solid var(--bg); margin-left: -7px; background: linear-gradient(135deg, #3b82f6, #2dd4bf); }
     .avatar:first-child { margin-left: 0; background: linear-gradient(135deg, #818cf8, #60a5fa); }
     .avatar:nth-child(3) { background: linear-gradient(135deg, #2dd4bf, #4ade80); }
 
-    .hero-card {
-      position: relative; z-index: 2;
-      background: linear-gradient(148deg, #0d1a2e 0%, #08101e 100%);
-      border: 1px solid rgba(255,255,255,0.08); border-radius: 1.6rem; padding: 1.75rem;
-      box-shadow: 0 50px 120px rgba(0,0,0,0.9), 0 0 0 1px rgba(45,212,191,0.07) inset;
-      overflow: hidden;
-    }
-    .hero-card::before {
-      content: ''; position: absolute; top: -80px; right: -80px; width: 240px; height: 240px;
-      background: radial-gradient(circle, rgba(45,212,191,0.12), transparent 68%); pointer-events: none;
-    }
+    /* HERO CARD */
+    .hero-card { position: relative; z-index: 2; background: linear-gradient(148deg, #0d1a2e 0%, #08101e 100%); border: 1px solid rgba(255,255,255,0.08); border-radius: 1.6rem; padding: 1.75rem; box-shadow: 0 50px 120px rgba(0,0,0,0.9), 0 0 0 1px rgba(45,212,191,0.07) inset; overflow: hidden; }
+    .hero-card::before { content: ''; position: absolute; top: -80px; right: -80px; width: 240px; height: 240px; background: radial-gradient(circle, rgba(45,212,191,0.12), transparent 68%); pointer-events: none; }
     .card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.4rem; }
     .card-title-row { display: flex; flex-direction: column; gap: 0.2rem; }
     .card-eyebrow { font-size: 0.62rem; font-weight: 600; letter-spacing: 0.28em; text-transform: uppercase; color: var(--soft); }
     .card-title-main { font-size: 0.85rem; font-weight: 600; color: var(--text); }
-    .live-badge {
-      display: flex; align-items: center; gap: 0.4rem; font-size: 0.66rem; font-weight: 600;
-      letter-spacing: 0.1em; color: var(--teal); padding: 0.25rem 0.7rem; border-radius: 999px;
-      border: 1px solid rgba(45,212,191,0.28); background: rgba(45,212,191,0.06);
-    }
+    .live-badge { display: flex; align-items: center; gap: 0.4rem; font-size: 0.66rem; font-weight: 600; letter-spacing: 0.1em; color: var(--teal); padding: 0.25rem 0.7rem; border-radius: 999px; border: 1px solid rgba(45,212,191,0.28); background: rgba(45,212,191,0.06); }
     .live-dot { width: 5px; height: 5px; border-radius: 999px; background: var(--teal); animation: blink 1.4s ease-in-out infinite; }
     .metrics { display: grid; grid-template-columns: 1fr 1fr; gap: 0.85rem; margin-bottom: 1.3rem; }
-    .metric {
-      background: rgba(14,22,40,0.9); border: 1px solid rgba(255,255,255,0.07);
-      border-radius: 0.9rem; padding: 1rem 0.85rem; transition: border-color 0.2s;
-    }
+    .metric { background: rgba(14,22,40,0.9); border: 1px solid rgba(255,255,255,0.07); border-radius: 0.9rem; padding: 1rem 0.85rem; transition: border-color 0.2s; }
     .metric:hover { border-color: rgba(45,212,191,0.2); }
     .metric-lbl { font-size: 0.62rem; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--soft); margin-bottom: 0.4rem; }
     .metric-val { font-family: var(--serif); font-size: 1.55rem; letter-spacing: -0.03em; margin-bottom: 0.25rem; font-weight: 400; }
@@ -315,31 +132,50 @@
     .card-rule { border: none; border-top: 1px solid var(--border); margin: 1.1rem 0; }
     .card-footer-txt { font-size: 0.68rem; color: var(--soft); line-height: 1.55; }
 
-    .data-strip {
-      position: relative; z-index: 1; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
-      padding: 1.4rem 0; background: rgba(5,8,16,0.6);
-    }
-    .data-strip-inner {
-      max-width: var(--max); margin: 0 auto; padding: 0 1.75rem;
-      display: flex; align-items: center; gap: 2.5rem;
-    }
+    /* DATA STRIP */
+    .data-strip { position: relative; z-index: 1; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 1.4rem 0; background: rgba(5,8,16,0.6); }
+    .data-strip-inner { max-width: var(--max); margin: 0 auto; padding: 0 1.75rem; display: flex; align-items: center; gap: 2.5rem; }
     .ds-label { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.26em; text-transform: uppercase; color: var(--soft); white-space: nowrap; flex-shrink: 0; }
     .ds-items { display: flex; align-items: center; gap: 2.25rem; flex-wrap: wrap; }
     .ds-item { font-size: 0.76rem; font-weight: 500; color: var(--muted); letter-spacing: 0.04em; }
     .ds-sep { width: 1px; height: 14px; background: var(--border2); flex-shrink: 0; }
 
-    .stat-band {
-      position: relative; z-index: 1; max-width: var(--max); margin: 0 auto;
-      padding: 5rem 1.75rem; display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem;
-    }
-    .stat-card {
-      background: var(--surface); border: 1px solid var(--border); border-radius: 1.2rem; padding: 1.75rem;
-      text-align: center; transition: border-color 0.25s, transform 0.3s var(--ease), box-shadow 0.3s;
-    }
+    /* STAT BAND */
+    .stat-band { position: relative; z-index: 1; max-width: var(--max); margin: 0 auto; padding: 5rem 1.75rem; display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; }
+    .stat-card { background: var(--surface); border: 1px solid var(--border); border-radius: 1.2rem; padding: 1.75rem; text-align: center; transition: border-color 0.25s, transform 0.3s var(--ease), box-shadow 0.3s; }
     .stat-card:hover { border-color: rgba(45,212,191,0.22); transform: translateY(-4px); box-shadow: 0 24px 60px rgba(0,0,0,0.6); }
-    .stat-num { font-family: var(--serif); font-size: 2.8rem; letter-spacing: -0.04em; color: var(--teal); line-height: 1; margin-bottom: 0.5rem; }
-    .stat-label { font-size: 0.78rem; color: var(--muted); line-height: 1.5; }
+    .stat-num { font-family: var(--serif); font-size: 2.5rem; letter-spacing: -0.04em; color: var(--teal); line-height: 1; margin-bottom: 0.5rem; }
+    .stat-label { font-size: 0.75rem; color: var(--muted); line-height: 1.5; }
 
+    /* AI ENGINE SECTION */
+    .ai-section { position: relative; z-index: 1; background: linear-gradient(160deg, rgba(45,212,191,0.04) 0%, rgba(96,165,250,0.03) 100%); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 6rem 1.75rem; overflow: hidden; }
+    .ai-section::before { content: ''; position: absolute; top: -120px; right: -120px; width: 500px; height: 500px; background: radial-gradient(circle, rgba(45,212,191,0.07) 0%, transparent 65%); pointer-events: none; }
+    .ai-inner { max-width: var(--max); margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
+    .ai-pills { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 2rem; }
+    .ai-pill { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; padding: 0.28rem 0.8rem; border-radius: 999px; border: 1px solid rgba(45,212,191,0.3); color: var(--teal); background: rgba(45,212,191,0.06); }
+    .ai-pill.blue { border-color: rgba(96,165,250,0.3); color: var(--blue); background: rgba(96,165,250,0.06); }
+    .ai-pill.purple { border-color: rgba(129,140,248,0.3); color: #818cf8; background: rgba(129,140,248,0.06); }
+    .ai-features { display: grid; gap: 1.5rem; }
+    .ai-feat { display: flex; gap: 1rem; align-items: flex-start; }
+    .ai-feat-icon { width: 38px; height: 38px; border-radius: 0.7rem; background: var(--tealB); border: 1px solid rgba(45,212,191,0.18); display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 0.1rem; }
+    .ai-feat-icon svg { width: 18px; height: 18px; stroke: var(--teal); fill: none; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+    .ai-feat-body h4 { font-size: 0.9rem; font-weight: 650; margin-bottom: 0.3rem; }
+    .ai-feat-body p { font-size: 0.81rem; color: var(--muted); line-height: 1.65; }
+    .ai-pipeline { background: #080f1d; border: 1px solid rgba(255,255,255,0.07); border-radius: 1.4rem; padding: 1.75rem; position: relative; overflow: hidden; }
+    .ai-pipeline::before { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, rgba(45,212,191,0.04), transparent 60%); pointer-events: none; }
+    .pipeline-label { font-size: 0.6rem; font-weight: 700; letter-spacing: 0.28em; text-transform: uppercase; color: var(--soft); margin-bottom: 1.25rem; }
+    .pipeline-steps { display: grid; gap: 0.65rem; }
+    .p-step { display: flex; align-items: center; gap: 0.85rem; padding: 0.75rem 0.9rem; background: rgba(255,255,255,0.025); border: 1px solid rgba(255,255,255,0.055); border-radius: 0.75rem; transition: border-color 0.2s; }
+    .p-step:hover { border-color: rgba(45,212,191,0.22); }
+    .p-num { font-size: 0.6rem; font-weight: 800; letter-spacing: 0.18em; color: var(--teal); min-width: 22px; }
+    .p-text { font-size: 0.78rem; color: var(--text); line-height: 1.4; flex: 1; }
+    .p-badge { font-size: 0.58rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; padding: 0.18rem 0.55rem; border-radius: 999px; white-space: nowrap; }
+    .p-badge.ai { background: rgba(45,212,191,0.1); color: var(--teal); border: 1px solid rgba(45,212,191,0.22); }
+    .p-badge.auto { background: rgba(96,165,250,0.1); color: var(--blue); border: 1px solid rgba(96,165,250,0.22); }
+    .p-badge.human { background: rgba(251,191,36,0.08); color: var(--amber); border: 1px solid rgba(251,191,36,0.2); }
+    .pipeline-note { margin-top: 1.1rem; font-size: 0.68rem; color: var(--soft); line-height: 1.6; border-top: 1px solid var(--border); padding-top: 1rem; }
+
+    /* SHARED SECTION */
     .section { position: relative; z-index: 1; max-width: var(--max); margin: 0 auto; padding: 6rem 1.75rem; }
     .section-kicker { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.3em; text-transform: uppercase; color: var(--teal); margin-bottom: 1rem; }
     h2 { font-family: var(--serif); font-size: clamp(1.9rem, 3.2vw, 2.7rem); line-height: 1.08; letter-spacing: -0.035em; font-weight: 400; margin-bottom: 1.1rem; }
@@ -347,16 +183,9 @@
     .full-divider { border: none; border-top: 1px solid var(--border); margin: 0; }
 
     .del-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
-    .del-card {
-      background: var(--surface); border: 1px solid var(--border); border-radius: 1.2rem; padding: 1.6rem;
-      transition: border-color 0.25s, transform 0.3s var(--ease), box-shadow 0.3s;
-    }
+    .del-card { background: var(--surface); border: 1px solid var(--border); border-radius: 1.2rem; padding: 1.6rem; transition: border-color 0.25s, transform 0.3s var(--ease), box-shadow 0.3s; }
     .del-card:hover { border-color: rgba(45,212,191,0.28); transform: translateY(-4px); box-shadow: 0 24px 60px rgba(0,0,0,0.55); }
-    .del-icon {
-      width: 44px; height: 44px; border-radius: 0.8rem; background: var(--tealB);
-      border: 1px solid rgba(45,212,191,0.2); display: flex; align-items: center; justify-content: center;
-      margin-bottom: 1.15rem; flex-shrink: 0;
-    }
+    .del-icon { width: 44px; height: 44px; border-radius: 0.8rem; background: var(--tealB); border: 1px solid rgba(45,212,191,0.2); display: flex; align-items: center; justify-content: center; margin-bottom: 1.15rem; flex-shrink: 0; }
     .del-icon svg { width: 20px; height: 20px; stroke: var(--teal); fill: none; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
     .del-card h3 { font-size: 0.95rem; font-weight: 650; margin-bottom: 0.5rem; }
     .del-card p { font-size: 0.82rem; color: var(--muted); line-height: 1.68; margin-bottom: 1.1rem; }
@@ -373,10 +202,7 @@
     .step li::before { content: ''; position: absolute; left: 0.2rem; top: 0.52rem; width: 4px; height: 4px; border-radius: 999px; background: var(--teal); }
 
     .who-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
-    .who-card {
-      background: var(--surface); border: 1px solid var(--border); border-radius: 1.2rem; padding: 1.75rem;
-      transition: border-color 0.25s, box-shadow 0.3s;
-    }
+    .who-card { background: var(--surface); border: 1px solid var(--border); border-radius: 1.2rem; padding: 1.75rem; transition: border-color 0.25s, box-shadow 0.3s; }
     .who-card:hover { border-color: rgba(45,212,191,0.22); box-shadow: 0 16px 50px rgba(0,0,0,0.5); }
     .who-card h3 { font-size: 1rem; font-weight: 650; margin-bottom: 0.5rem; }
     .who-card p { font-size: 0.82rem; color: var(--muted); line-height: 1.68; margin-bottom: 1rem; }
@@ -392,10 +218,7 @@
     .cta-note { margin-top: 1.25rem; font-size: 0.72rem; color: var(--soft); }
 
     footer { position: relative; z-index: 1; border-top: 1px solid var(--border); padding: 2.5rem 1.75rem; }
-    .footer-inner {
-      max-width: var(--max); margin: 0 auto; display: flex; align-items: center; justify-content: space-between;
-      flex-wrap: wrap; gap: 1rem; font-size: 0.76rem; color: var(--soft);
-    }
+    .footer-inner { max-width: var(--max); margin: 0 auto; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; font-size: 0.76rem; color: var(--soft); }
     .footer-brand { display: flex; align-items: center; gap: 0.6rem; font-weight: 600; color: var(--muted); font-size: 0.82rem; }
 
     .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.72s var(--ease), transform 0.72s var(--ease); }
@@ -408,14 +231,16 @@
     @media (max-width: 920px) {
       .hero { grid-template-columns: 1fr; padding-top: 80px; gap: 40px; }
       .hero-card { display: none; }
-      .del-grid, .steps, .who-grid, .stat-band { grid-template-columns: 1fr; }
-      .stat-band { padding: 3rem 1.75rem; }
+      .del-grid, .steps, .who-grid { grid-template-columns: 1fr; }
+      .stat-band { grid-template-columns: repeat(2, 1fr); padding: 3rem 1.75rem; }
+      .ai-inner { grid-template-columns: 1fr; gap: 3rem; }
       .nav-links { display: none; }
       .data-strip-inner { flex-wrap: wrap; gap: 1rem; }
     }
     @media (max-width: 600px) {
       .nav-ghost-hide { display: none !important; }
       .btn { padding: 0.44rem 1rem; font-size: 0.76rem; }
+      .stat-band { grid-template-columns: 1fr 1fr; }
     }
   </style>
 </head>
@@ -428,34 +253,18 @@
 <div class="modal-overlay" id="pilotModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
   <div class="modal">
     <button class="modal-close" id="modalClose" aria-label="Close">&times;</button>
-
     <div id="modalForm">
       <div class="modal-kicker">Pilot program</div>
       <h2 id="modalTitle">Book your pilot month</h2>
       <p class="modal-sub">Tell us a bit about your firm and what you need. We'll reach out within one business day to set things up.</p>
-
       <form id="pilotForm">
         <div class="form-row">
-          <div class="form-group">
-            <label for="firstName">First name</label>
-            <input type="text" id="firstName" name="firstName" placeholder="Jane" required />
-          </div>
-          <div class="form-group">
-            <label for="lastName">Last name</label>
-            <input type="text" id="lastName" name="lastName" placeholder="Smith" required />
-          </div>
+          <div class="form-group"><label for="firstName">First name</label><input type="text" id="firstName" name="firstName" placeholder="Jane" required /></div>
+          <div class="form-group"><label for="lastName">Last name</label><input type="text" id="lastName" name="lastName" placeholder="Smith" required /></div>
         </div>
-
-        <div class="form-group">
-          <label for="email">Work email</label>
-          <input type="email" id="email" name="email" placeholder="jane@yourfirm.com" required />
-        </div>
-
+        <div class="form-group"><label for="email">Work email</label><input type="email" id="email" name="email" placeholder="jane@yourfirm.com" required /></div>
         <div class="form-row">
-          <div class="form-group">
-            <label for="firm">Firm name</label>
-            <input type="text" id="firm" name="firm" placeholder="Acme Advisors" required />
-          </div>
+          <div class="form-group"><label for="firm">Firm name</label><input type="text" id="firm" name="firm" placeholder="Acme Advisors" required /></div>
           <div class="form-group">
             <label for="firmType">Firm type</label>
             <select id="firmType" name="firmType" required>
@@ -468,12 +277,7 @@
             </select>
           </div>
         </div>
-
-        <div class="form-group">
-          <label for="role">Your role</label>
-          <input type="text" id="role" name="role" placeholder="Director of Marketing, VP Investor Relations…" />
-        </div>
-
+        <div class="form-group"><label for="role">Your role</label><input type="text" id="role" name="role" placeholder="Director of Marketing, VP Investor Relations&hellip;" /></div>
         <div class="form-group">
           <label for="cadence">Current update cadence</label>
           <select id="cadence" name="cadence">
@@ -484,17 +288,14 @@
             <option>Not sending updates yet</option>
           </select>
         </div>
-
         <div class="form-group">
           <label for="notes">Anything else we should know? <span style="font-weight:400;text-transform:none;letter-spacing:0;color:var(--soft)">(optional)</span></label>
-          <textarea id="notes" name="notes" placeholder="Tone preferences, existing tools, audience size, questions…"></textarea>
+          <textarea id="notes" name="notes" placeholder="Tone preferences, existing tools, audience size, questions&hellip;"></textarea>
         </div>
-
         <button type="submit" class="form-submit">Submit &rarr;</button>
         <p class="form-note">No commitment. We'll follow up within one business day.</p>
       </form>
     </div>
-
     <div class="modal-success" id="modalSuccess">
       <div class="check">&#10003;</div>
       <h3>You're on the list.</h3>
@@ -502,7 +303,6 @@
     </div>
   </div>
 </div>
-<!-- END MODAL -->
 
 <header>
   <nav>
@@ -511,6 +311,7 @@
       Brief<span style="color:var(--muted);font-weight:400;">folio</span>
     </div>
     <div class="nav-links">
+      <a href="#ai-engine">AI Engine</a>
       <a href="#deliverables">Deliverables</a>
       <a href="#how">How it works</a>
       <a href="#who">Who it's for</a>
@@ -522,15 +323,16 @@
   </nav>
 </header>
 
+<!-- HERO -->
 <div class="hero-wrap">
   <div class="hero">
     <div>
-      <div class="eyebrow reveal"><span class="eyebrow-dot"></span>Done-for-you market commentary</div>
-      <h1 class="reveal reveal-delay-1">Market briefs for firms that need to sound sharp, current, and credible.</h1>
-      <p class="hero-sub reveal reveal-delay-2">Brieffolio pulls live macro and market data, writes your monthly update in your voice, and delivers a ready-to-send newsletter, branded PDF brief, and internal talking points for advisory teams, real estate firms, and other client-facing operators.</p>
+      <div class="eyebrow reveal"><span class="eyebrow-dot"></span>AI-powered market intelligence</div>
+      <h1 class="reveal reveal-delay-1">Your firm's voice.<br><em>Our AI</em> does the heavy lifting.</h1>
+      <p class="hero-sub reveal reveal-delay-2">Brieffolio's AI ingests real-time data from 12+ authoritative financial sources, synthesizes the macro picture, and writes your monthly market brief in your firm's exact voice — delivering a client email, branded PDF, and advisor talking points before you've touched a keyboard.</p>
       <div class="hero-actions reveal reveal-delay-3">
         <button class="btn btn-teal btn-lg" onclick="openModal()">Book a pilot month &#8594;</button>
-        <a class="btn btn-ghost btn-lg" href="#deliverables">See what you get</a>
+        <a class="btn btn-ghost btn-lg" href="#ai-engine">See how the AI works</a>
       </div>
       <div class="trust-line reveal reveal-delay-4">
         <div class="avatars">
@@ -538,14 +340,14 @@
           <div class="avatar"></div>
           <div class="avatar"></div>
         </div>
-        Built for teams that use market context to build trust with clients, investors, and partners.
+        Built for client-facing teams that want the speed of AI without losing their firm's credibility.
       </div>
     </div>
     <aside class="hero-card reveal reveal-delay-2">
       <div class="card-header">
         <div class="card-title-row">
-          <span class="card-eyebrow">Monthly snapshot</span>
-          <span class="card-title-main">April 2026 brief preview</span>
+          <span class="card-eyebrow">AI brief snapshot</span>
+          <span class="card-title-main">May 2026 — generated in seconds</span>
         </div>
         <div class="live-badge"><span class="live-dot"></span>Live data</div>
       </div>
@@ -553,77 +355,156 @@
         <div class="metric"><div class="metric-lbl">CPI (YoY)</div><div class="metric-val a">3.8%</div><div class="metric-note">Highest in nearly 3 years</div></div>
         <div class="metric"><div class="metric-lbl">Payrolls</div><div class="metric-val t">+115k</div><div class="metric-note">Cooling but still resilient</div></div>
         <div class="metric"><div class="metric-lbl">10Y Treasury</div><div class="metric-val a">4.42%</div><div class="metric-note">Elevated borrowing costs</div></div>
-        <div class="metric"><div class="metric-lbl">Fed Funds</div><div class="metric-val t">3.50&#8211;3.75%</div><div class="metric-note">On hold &#8212; Apr meeting</div></div>
+        <div class="metric"><div class="metric-lbl">Fed Funds</div><div class="metric-val t">3.50&#8211;3.75%</div><div class="metric-note">On hold &mdash; May meeting</div></div>
       </div>
       <hr class="card-rule">
-      <p class="card-footer-txt">We connect to trusted economic and market sources, shape the story to your tone, and deliver drafts your team can review fast.</p>
+      <p class="card-footer-txt">AI-generated draft. Reviewed in under an hour. Sent to 400+ clients the same day.</p>
     </aside>
   </div>
 </div>
 
+<!-- DATA STRIP -->
 <div class="data-strip">
   <div class="data-strip-inner">
-    <span class="ds-label">Powered by</span>
+    <span class="ds-label">AI-ingested sources</span>
     <div class="ds-items">
       <span class="ds-item">BLS.gov</span><div class="ds-sep"></div>
       <span class="ds-item">FRED / St. Louis Fed</span><div class="ds-sep"></div>
       <span class="ds-item">Federal Reserve</span><div class="ds-sep"></div>
       <span class="ds-item">CME FedWatch</span><div class="ds-sep"></div>
-      <span class="ds-item">U.S. Treasury</span>
+      <span class="ds-item">U.S. Treasury</span><div class="ds-sep"></div>
+      <span class="ds-item">12+ live sources</span>
     </div>
   </div>
 </div>
 
+<!-- STAT BAND -->
 <div class="stat-band">
   <div class="stat-card reveal">
     <div class="stat-num">&lt;1hr</div>
-    <div class="stat-label">Typical team review time<br>per monthly cycle</div>
+    <div class="stat-label">From AI draft to client-ready brief</div>
+  </div>
+  <div class="stat-card reveal reveal-delay-1">
+    <div class="stat-num">12+</div>
+    <div class="stat-label">Live financial data sources ingested per brief</div>
   </div>
   <div class="stat-card reveal reveal-delay-2">
     <div class="stat-num">3</div>
-    <div class="stat-label">Client-ready assets<br>delivered every cycle</div>
+    <div class="stat-label">AI-generated client assets every cycle</div>
   </div>
   <div class="stat-card reveal reveal-delay-3">
-    <div class="stat-num">12+</div>
-    <div class="stat-label">Trusted data sources<br>pulled automatically</div>
+    <div class="stat-num">0</div>
+    <div class="stat-label">Blank pages, stale templates, or generic filler</div>
   </div>
 </div>
 
 <hr class="full-divider">
 
+<!-- AI ENGINE SECTION -->
+<section id="ai-engine" class="ai-section">
+  <div class="ai-inner">
+    <div>
+      <div class="ai-pills">
+        <span class="ai-pill">AI-generated</span>
+        <span class="ai-pill blue">Real-time data</span>
+        <span class="ai-pill purple">Voice-matched</span>
+      </div>
+      <h2 class="reveal" style="margin-bottom:1rem;">The AI engine behind every brief.</h2>
+      <p class="section-lead reveal reveal-delay-1" style="margin-bottom:2rem;">Most market commentary is either too generic to build trust or too time-consuming to produce consistently. Brieffolio's AI was purpose-built to fix that — pulling live financial data, reading the macro narrative, and writing in the voice your clients already know.</p>
+      <div class="ai-features">
+        <div class="ai-feat reveal reveal-delay-1">
+          <div class="ai-feat-icon"><svg viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div>
+          <div class="ai-feat-body">
+            <h4>Real-time financial data ingestion</h4>
+            <p>Our AI pulls directly from the Fed, BLS, Treasury, and CME every cycle — no manual lookups, no lagging data, no copy-paste errors.</p>
+          </div>
+        </div>
+        <div class="ai-feat reveal reveal-delay-2">
+          <div class="ai-feat-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg></div>
+          <div class="ai-feat-body">
+            <h4>Voice-trained writing model</h4>
+            <p>Feed us a few past updates and your brand guidelines. Our AI learns your tone, your house view, and your audience — then writes like you, not like a press release.</p>
+          </div>
+        </div>
+        <div class="ai-feat reveal reveal-delay-3">
+          <div class="ai-feat-icon"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+          <div class="ai-feat-body">
+            <h4>Human review before anything ships</h4>
+            <p>AI handles the research and drafting. Your team approves. Nothing goes to clients without your sign-off — so you keep the credibility, not just the speed.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="ai-pipeline reveal reveal-delay-2">
+      <div class="pipeline-label">AI workflow &mdash; every month</div>
+      <div class="pipeline-steps">
+        <div class="p-step">
+          <span class="p-num">01</span>
+          <span class="p-text">Ingest live macro &amp; market data</span>
+          <span class="p-badge auto">Auto</span>
+        </div>
+        <div class="p-step">
+          <span class="p-num">02</span>
+          <span class="p-text">Identify the key narrative signals</span>
+          <span class="p-badge ai">AI</span>
+        </div>
+        <div class="p-step">
+          <span class="p-num">03</span>
+          <span class="p-text">Draft email, PDF brief &amp; talking points in your voice</span>
+          <span class="p-badge ai">AI</span>
+        </div>
+        <div class="p-step">
+          <span class="p-num">04</span>
+          <span class="p-text">Deliver draft pack for your team to review</span>
+          <span class="p-badge auto">Auto</span>
+        </div>
+        <div class="p-step">
+          <span class="p-num">05</span>
+          <span class="p-text">Your team approves &amp; sends</span>
+          <span class="p-badge human">You</span>
+        </div>
+      </div>
+      <p class="pipeline-note">Average review time under one hour. Most teams send with minor edits or none at all.</p>
+    </div>
+  </div>
+</section>
+
+<hr class="full-divider">
+
+<!-- DELIVERABLES -->
 <section id="deliverables" class="section">
   <div class="section-kicker reveal">What you get every month</div>
-  <h2 class="reveal reveal-delay-1">One data pull.<br>Three assets. Zero blank pages.</h2>
-  <p class="section-lead reveal reveal-delay-2">We take the macro and market inputs your team already tracks and turn them into a concise communication pack your team can actually use with clients, investors, or counterparties.</p>
+  <h2 class="reveal reveal-delay-1">One AI data pull.<br>Three client-ready assets.</h2>
+  <p class="section-lead reveal reveal-delay-2">The AI generates everything. Your team reviews it. Your clients get polished, credible market content on a consistent schedule — without your team spending days on it.</p>
   <div class="del-grid">
     <div class="del-card reveal">
       <div class="del-icon"><svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 7l10 7 10-7"/></svg></div>
-      <h3>Client email newsletter</h3>
-      <p>A concise, plain-English market email written in your voice for your existing platform, CRM, or investor list. No hot takes, no fluff.</p>
+      <h3>AI-drafted client email</h3>
+      <p>A concise, plain-English market update written in your voice — ready to drop into your CRM, email platform, or investor list. Subject line, preheader, and all.</p>
       <div class="tag-row">
-        <span class="tag">Subject line + preheader</span>
+        <span class="tag">Voice-matched copy</span>
         <span class="tag">Macro recap</span>
-        <span class="tag">Client-friendly tone</span>
+        <span class="tag">Send-ready format</span>
       </div>
     </div>
     <div class="del-card reveal reveal-delay-2">
       <div class="del-icon"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg></div>
-      <h3>PDF market brief</h3>
-      <p>A 2&#8211;3 page branded PDF with charts, data, and commentary your audience can read quickly and keep on file for meetings, updates, or follow-up.</p>
+      <h3>Branded PDF market brief</h3>
+      <p>A 2&ndash;3 page AI-compiled brief with live data, charts, and narrative commentary. Clients keep it on file. Your firm looks like it has a full research team behind it.</p>
       <div class="tag-row">
-        <span class="tag">Charts + datapoints</span>
+        <span class="tag">Live data + charts</span>
         <span class="tag">Executive summary</span>
         <span class="tag">Branded layout</span>
       </div>
     </div>
     <div class="del-card reveal reveal-delay-3">
       <div class="del-icon"><svg viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/><line x1="2" y1="20" x2="22" y2="20"/></svg></div>
-      <h3>Internal talking points</h3>
-      <p>An internal one-pager your team can use for client calls, investor updates, leasing conversations, webinars, and recurring touchpoints throughout the month.</p>
+      <h3>Advisor talking points</h3>
+      <p>An AI-generated internal one-pager your team uses for client calls, investor updates, and webinars throughout the month. Consistent messaging, no guesswork.</p>
       <div class="tag-row">
         <span class="tag">Bullet-format</span>
         <span class="tag">Q&amp;A responses</span>
-        <span class="tag">Internal only</span>
+        <span class="tag">Internal use</span>
       </div>
     </div>
   </div>
@@ -631,29 +512,30 @@
 
 <hr class="full-divider">
 
+<!-- HOW IT WORKS -->
 <section id="how" class="section">
-  <div class="section-kicker reveal">How Brieffolio fits in</div>
-  <h2 class="reveal reveal-delay-1">We handle the lift.<br>You keep the point of view.</h2>
-  <p class="section-lead reveal reveal-delay-2">The goal is simple: turn a recurring communication lift into a fast review step without flattening your firm's voice or perspective.</p>
+  <div class="section-kicker reveal">How Brieffolio works</div>
+  <h2 class="reveal reveal-delay-1">AI does the research.<br>You keep the relationship.</h2>
+  <p class="section-lead reveal reveal-delay-2">The workflow is simple: we train on your voice once, then the AI runs every month — so your team goes from raw data to sent brief in under an hour.</p>
   <div class="steps">
     <div class="step reveal">
-      <div class="step-n">Step 01</div>
-      <h3>We learn your voice</h3>
-      <p>Share a few past updates, brand guidelines, and any internal guardrails from leadership, compliance, or investor relations.</p>
+      <div class="step-n">Step 01 &mdash; Setup</div>
+      <h3>Train the AI on your firm</h3>
+      <p>Share past updates, brand guidelines, and any tone or compliance guardrails. Our AI maps your voice so every draft sounds like you wrote it.</p>
       <ul>
-        <li>Map your tone and house views to our workflow</li>
-        <li>Agree on structure, length, and data sources</li>
-        <li>Nothing goes out without your sign-off</li>
+        <li>One-time onboarding call to dial in your style</li>
+        <li>AI voice profile built from your existing content</li>
+        <li>Agree on data sources, structure, and delivery timing</li>
       </ul>
     </div>
     <div class="step reveal reveal-delay-2">
-      <div class="step-n">Step 02</div>
-      <h3>Monthly briefs on a schedule</h3>
-      <p>Each month we pull fresh data, generate your communication pack, and send drafts to your team for quick review and final approval.</p>
+      <div class="step-n">Step 02 &mdash; Every month</div>
+      <h3>AI drafts. You approve. Done.</h3>
+      <p>Each cycle the AI ingests fresh data, writes your full communication pack, and delivers drafts for a quick review. Most teams are done in under an hour.</p>
       <ul>
-        <li>Timing can align to CPI, jobs, Fed dates, or your own reporting cadence</li>
-        <li>Most teams only tweak a small portion before sending</li>
-        <li>Your team gets a predictable, reusable communication toolkit</li>
+        <li>Auto-triggered around CPI, Fed, or jobs data releases</li>
+        <li>Complete 3-asset pack delivered to your inbox</li>
+        <li>Nothing goes out without your final sign-off</li>
       </ul>
     </div>
   </div>
@@ -661,37 +543,39 @@
 
 <hr class="full-divider">
 
+<!-- WHO IT'S FOR -->
 <section id="who" class="section">
   <div class="section-kicker reveal">Who gets the most value</div>
-  <h2 class="reveal reveal-delay-1">Teams that already know trust is built through communication.</h2>
-  <p class="section-lead reveal reveal-delay-2">Brieffolio is for firms that already have a point of view and want a more consistent, polished way to communicate it to the people who matter.</p>
+  <h2 class="reveal reveal-delay-1">For teams that communicate markets — but can't afford a research desk.</h2>
+  <p class="section-lead reveal reveal-delay-2">Brieffolio gives smaller and mid-size firms the AI infrastructure that used to require an entire content and research team.</p>
   <div class="who-grid">
     <div class="who-card reveal">
       <h3>Advisory and wealth teams</h3>
-      <p>Firms that want to stay in front of clients with market context, polished commentary, and a consistent monthly voice.</p>
+      <p>Independent RIAs and advisor teams that want to stay sharp with clients using AI-generated, data-backed market commentary — without a full-time content hire.</p>
       <ul>
-        <li>Independent RIAs and advisor teams</li>
-        <li>Firms with regular client review touchpoints</li>
-        <li>Operators who want faster content without generic tone</li>
+        <li>Replace manual monthly writing with AI drafts</li>
+        <li>Consistent voice across all client touchpoints</li>
+        <li>Sound like a firm 10x your size</li>
       </ul>
     </div>
     <div class="who-card reveal reveal-delay-2">
       <h3>Commercial real estate firms</h3>
-      <p>Brokerage, investment, and operator teams that need clean market-facing material for investors, tenants, prospects, and partners.</p>
+      <p>IR, brokerage, and capital markets teams that need polished market material for investors and partners — generated from live data, not recycled talking points.</p>
       <ul>
-        <li>Investor relations and capital markets teams</li>
-        <li>Brokers and operators sending recurring market updates</li>
-        <li>Firms that want a sharper research-to-distribution workflow</li>
+        <li>AI-sourced macro context for every deal narrative</li>
+        <li>Standardize LP and investor update quality</li>
+        <li>Replace ad hoc research with a repeatable AI workflow</li>
       </ul>
     </div>
   </div>
 </section>
 
+<!-- CTA -->
 <div class="cta-section">
   <div class="cta-inner">
     <div class="section-kicker reveal" style="text-align:center;">Ready to pilot?</div>
-    <h2 class="reveal reveal-delay-1">Stop burning time on recurring market updates.</h2>
-    <p class="reveal reveal-delay-2">We're looking for a handful of teams for a pilot month. You'll get the full communication pack, and we'll refine it until it sounds exactly like your firm.</p>
+    <h2 class="reveal reveal-delay-1">Let AI handle your market briefs. You focus on the relationship.</h2>
+    <p class="reveal reveal-delay-2">We're onboarding a small group of pilot firms now. You'll get the full AI-generated communication pack, refined to your voice, with no commitment to continue.</p>
     <div class="cta-btns reveal reveal-delay-3">
       <button class="btn btn-teal btn-lg" onclick="openModal()">Book a pilot month &#8594;</button>
       <a class="btn btn-ghost btn-lg" href="mailto:brieffolio@gmail.com?subject=Question">Ask a question</a>
@@ -706,7 +590,7 @@
       <div class="logo-mark" style="width:26px;height:26px;"><span style="font-size:0.62rem;">Bf</span></div>
       Brieffolio
     </div>
-    <span>Monthly market briefs for advisory, CRE, and client-facing teams.</span>
+    <span>AI-powered market briefs for advisory, CRE, and client-facing teams.</span>
     <span>&#169; 2026 &#183; <a href="mailto:brieffolio@gmail.com" style="color:var(--muted);">brieffolio@gmail.com</a></span>
   </div>
 </footer>
@@ -720,35 +604,20 @@
     }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
     document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
   })();
-
-  function openModal() {
-    document.getElementById('pilotModal').classList.add('open');
-    document.body.style.overflow = 'hidden';
-  }
-  function closeModal() {
-    document.getElementById('pilotModal').classList.remove('open');
-    document.body.style.overflow = '';
-  }
+  function openModal() { document.getElementById('pilotModal').classList.add('open'); document.body.style.overflow = 'hidden'; }
+  function closeModal() { document.getElementById('pilotModal').classList.remove('open'); document.body.style.overflow = ''; }
   document.getElementById('modalClose').addEventListener('click', closeModal);
-  document.getElementById('pilotModal').addEventListener('click', function(e) {
-    if (e.target === this) closeModal();
-  });
-  document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape') closeModal();
-  });
-
-  document.getElementById('pilotForm').addEventListener('submit', function(e) {
+  document.getElementById('pilotModal').addEventListener('click', function(e){ if(e.target===this) closeModal(); });
+  document.addEventListener('keydown', function(e){ if(e.key==='Escape') closeModal(); });
+  document.getElementById('pilotForm').addEventListener('submit', function(e){
     e.preventDefault();
-    var data = new FormData(this);
-    var body = [];
-    data.forEach(function(v, k) { if(v) body.push(k + ': ' + v); });
-    var mailto = 'mailto:brieffolio@gmail.com?subject=Pilot+Application&body=' + encodeURIComponent(body.join('\n'));
-    window.location.href = mailto;
+    var data = new FormData(this), body = [];
+    data.forEach(function(v,k){ if(v) body.push(k+': '+v); });
+    window.location.href = 'mailto:brieffolio@gmail.com?subject=Pilot+Application&body='+encodeURIComponent(body.join('\n'));
     document.getElementById('modalForm').style.display = 'none';
     document.getElementById('modalSuccess').classList.add('show');
     setTimeout(closeModal, 4000);
   });
 </script>
-
 </body>
 </html>
