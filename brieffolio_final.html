@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Brieffolio – Monthly Market Briefs for RIAs</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      /* Type scale */
+      --text-xs:   clamp(0.75rem,  0.7rem  + 0.25vw, 0.85rem);
+      --text-sm:   clamp(0.85rem,  0.8rem  + 0.25vw, 0.95rem);
+      --text-base: clamp(0.98rem,  0.95rem + 0.3vw, 1.08rem);
+      --text-lg:   clamp(1.12rem,  1.02rem + 0.7vw, 1.45rem);
+      --text-xl:   clamp(1.6rem,   1.3rem  + 1.2vw, 2.35rem);
+      --text-2xl:  clamp(2.4rem,   1.7rem  + 2.8vw, 3.5rem);
+
+      /* Spacing */
+      --space-2: 0.5rem; --space-3: 0.75rem; --space-4: 1rem; --space-5: 1.25rem;
+      --space-6: 1.5rem; --space-8: 2rem; --space-10: 2.5rem; --space-12: 3rem; --space-16: 4rem;
+
+      /* Dark palette */
+      --color-bg: #050608;
+      --color-surface: #0c0f14;
+      --color-surface-soft: #11151c;
+      --color-surface-strong: #0a0d12;
+      --color-border-subtle: rgba(255,255,255,0.06);
+      --color-border-strong: rgba(255,255,255,0.14);
+
+      --color-text: #f5f7fb;
+      --color-text-muted: #8b94a5;
+      --color-text-soft: #647089;
+
+      --color-primary: #2dd4bf; /* teal */
+      --color-primary-soft: rgba(45,212,191,0.08);
+      --color-primary-strong: #0f766e;
+
+      --radius-md: 0.65rem; --radius-lg: 0.9rem; --radius-full: 999px;
+      --shadow-soft: 0 24px 70px rgba(0,0,0,0.7);
+
+      --font-body: 'DM Sans', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-display: 'DM Serif Display', 'Georgia', serif;
+      --content-default: 1040px;
+      --transition: 200ms cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    html{scroll-behavior:smooth;}
+    body{
+      min-height:100vh;
+      font-family:var(--font-body);
+      font-size:var(--text-base);
+      background:radial-gradient(circle at top, #050816 0, #020308 55%, #000000 100%);
+      color:var(--color-text);
+      -webkit-font-smoothing:antialiased;
+      text-rendering:optimizeLegibility;
+    }
+    img{max-width:100%;display:block;height:auto;}
+    a{text-decoration:none;color:inherit;}
+
+    header{
+      position:sticky;top:0;z-index:20;
+      background:rgba(5,6,8,0.92);
+      backdrop-filter:blur(18px);
+      border-bottom:1px solid var(--color-border-subtle);
+    }
+    .nav{max-width:var(--content-default);margin:0 auto;padding:var(--space-3) var(--space-4);display:flex;align-items:center;justify-content:space-between;gap:var(--space-4);}    
+    .logo{display:flex;align-items:center;gap:var(--space-3);}
+    .logo-mark{
+      width:34px;height:34px;border-radius:40% 60% 45% 55%;
+      background:conic-gradient(from 210deg, #22d3ee, #2dd4bf, #38bdf8, #0ea5e9, #22d3ee);
+      display:flex;align-items:center;justify-content:center;
+      color:#020617;font-weight:700;font-size:0.95rem;
+      box-shadow:0 14px 40px rgba(15,23,42,0.85);
+    }
+    .logo-text{display:flex;flex-direction:column;gap:0.1rem;}
+    .logo-title{font-size:var(--text-sm);letter-spacing:0.16em;text-transform:uppercase;color:var(--color-text-soft);}
+    .logo-tag{font-size:var(--text-xs);color:var(--color-text-muted);}
+
+    .nav-links{display:flex;align-items:center;gap:var(--space-4);font-size:var(--text-sm);color:var(--color-text-muted);}
+    .nav-links a{position:relative;}
+    .nav-links a::after{content:'';position:absolute;left:0;bottom:-0.25rem;width:0;height:1px;background:var(--color-primary);transition:width var(--transition);}    
+    .nav-links a:hover::after{width:100%;}
+
+    .btn{display:inline-flex;align-items:center;justify-content:center;padding:0.55rem 1.3rem;border-radius:var(--radius-full);font-size:var(--text-sm);border:1px solid transparent;transition:background var(--transition),color var(--transition),border-color var(--transition),box-shadow var(--transition);white-space:nowrap;}
+    .btn-primary{background:var(--color-primary);color:#022c22;box-shadow:0 18px 40px rgba(45,212,191,0.45);}
+    .btn-primary:hover{background:#5eead4;box-shadow:0 22px 60px rgba(45,212,191,0.6);}    
+    .btn-ghost{background:rgba(15,23,42,0.8);border-color:var(--color-border-subtle);color:var(--color-text-muted);}    
+    .btn-ghost:hover{border-color:var(--color-border-strong);background:rgba(15,23,42,0.95);}
+
+    main{padding-block:var(--space-12);}    
+    .container{max-width:var(--content-default);margin:0 auto;padding-inline:var(--space-4);}    
+
+    .hero{padding-block:var(--space-12);}
+    .hero-grid{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1.1fr);gap:var(--space-10);align-items:center;}
+    .hero-kicker{font-size:var(--text-sm);letter-spacing:0.28em;text-transform:uppercase;color:var(--color-text-soft);margin-bottom:var(--space-3);}    
+    .hero-title{font-family:var(--font-display);font-size:var(--text-2xl);line-height:1.02;letter-spacing:-0.04em;margin-bottom:var(--space-4);}    
+    .hero-lede{font-size:var(--text-lg);color:var(--color-text-muted);max-width:34rem;margin-bottom:var(--space-6);}    
+    .hero-actions{display:flex;flex-wrap:wrap;gap:var(--space-3);align-items:center;margin-bottom:var(--space-3);}    
+    .hero-note{font-size:var(--text-xs);color:var(--color-text-soft);max-width:30rem;}
+
+    .hero-card{
+      background:radial-gradient(circle at top left, #0b1220 0, #020617 52%, #020617 100%);
+      border-radius:1.4rem;
+      padding:var(--space-5);
+      box-shadow:var(--shadow-soft);
+      border:1px solid rgba(148,163,184,0.12);
+      position:relative;
+      overflow:hidden;
+    }
+    .hero-card::before{
+      content:'';position:absolute;inset:-40%;
+      background:radial-gradient(circle at 10% 0, rgba(56,189,248,0.18), transparent 55%),
+                 radial-gradient(circle at 110% 110%, rgba(45,212,191,0.2), transparent 55%);
+      opacity:0.7;pointer-events:none;mix-blend-mode:screen;
+    }
+    .hero-card-inner{position:relative;z-index:1;}
+    .hero-card-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:var(--space-4);}    
+    .hero-card-title{font-size:var(--text-sm);letter-spacing:0.16em;text-transform:uppercase;color:var(--color-text-soft);}
+    .hero-card-pill{font-size:var(--text-xs);padding-inline:0.75rem;padding-block:0.25rem;border-radius:var(--radius-full);background:rgba(15,23,42,0.7);color:var(--color-primary);border:1px solid rgba(45,212,191,0.4);backdrop-filter:blur(10px);}
+
+    .metric-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--space-4);margin-bottom:var(--space-4);}    
+    .metric{padding:var(--space-3);border-radius:var(--radius-md);background:rgba(15,23,42,0.9);border:1px solid rgba(148,163,184,0.25);}    
+    .metric-label{font-size:var(--text-xs);color:var(--color-text-soft);text-transform:uppercase;letter-spacing:0.16em;margin-bottom:0.4rem;}    
+    .metric-value{font-family:var(--font-display);font-size:1.3rem;margin-bottom:0.25rem;}
+    .metric-caption{font-size:var(--text-xs);color:var(--color-text-muted);}    
+    .hero-footnote{font-size:var(--text-xs);color:var(--color-text-soft);max-width:28rem;}
+
+    .section{padding-block:var(--space-12);border-top:1px solid var(--color-border-subtle);}
+    .section-heading{font-size:var(--text-xs);letter-spacing:0.26em;text-transform:uppercase;color:var(--color-text-soft);margin-bottom:var(--space-3);}    
+    .section-title{font-family:var(--font-display);font-size:var(--text-xl);margin-bottom:var(--space-3);letter-spacing:-0.03em;}    
+    .section-lede{max-width:36rem;font-size:var(--text-base);color:var(--color-text-muted);margin-bottom:var(--space-6);}    
+    .grid-2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--space-6);}    
+    .card{background:var(--color-surface);border-radius:var(--radius-lg);padding:var(--space-5);border:1px solid var(--color-border-subtle);box-shadow:0 18px 60px rgba(0,0,0,0.6);}    
+    .card h3{font-size:var(--text-lg);margin-bottom:var(--space-2);}    
+    .card p{font-size:var(--text-sm);color:var(--color-text-muted);margin-bottom:var(--space-3);max-width:32rem;}    
+    .card ul{list-style:none;display:grid;gap:0.4rem;font-size:var(--text-sm);color:var(--color-text);}    
+    .card li{position:relative;padding-left:1.2rem;}
+    .card li::before{content:'';position:absolute;left:0.2rem;top:0.55rem;width:0.35rem;height:0.35rem;border-radius:999px;background:var(--color-primary);}    
+
+    .pill-row{display:flex;flex-wrap:wrap;gap:0.6rem;margin-top:var(--space-4);}    
+    .pill{font-size:var(--text-xs);padding:0.35rem 0.9rem;border-radius:var(--radius-full);border:1px solid var(--color-border-subtle);color:var(--color-text-soft);background:rgba(15,23,42,0.8);}    
+
+    .footer{padding-block:var(--space-8);border-top:1px solid var(--color-border-subtle);font-size:var(--text-xs);color:var(--color-text-soft);}
+    .footer-inner{max-width:var(--content-default);margin:0 auto;padding-inline:var(--space-4);display:flex;justify-content:space-between;gap:var(--space-4);flex-wrap:wrap;align-items:center;}    
+
+    @media (max-width: 900px){
+      .hero{padding-block:var(--space-10);}      
+      .hero-grid{grid-template-columns:1fr;gap:var(--space-8);}      
+      .nav{padding-inline:var(--space-4);}      
+      .nav-links{display:none;}      
+      main{padding-block:var(--space-10);}      
+      .grid-2{grid-template-columns:1fr;}
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="nav">
+      <div class="logo">
+        <div class="logo-mark">Bf</div>
+        <div class="logo-text">
+          <span class="logo-title">Brieffolio</span>
+          <span class="logo-tag">Monthly market briefs for RIAs</span>
+        </div>
+      </div>
+      <nav class="nav-links" aria-label="Primary">
+        <a href="#how">How it works</a>
+        <a href="#deliverables">Deliverables</a>
+        <a href="#who">Who it’s for</a>
+        <a class="btn btn-ghost" href="mailto:hello@brieffolio.co?subject=Brieffolio%20Intro">Talk to us</a>
+        <a class="btn btn-primary" href="mailto:hello@brieffolio.co?subject=Pilot%20Monthly%20Brief">Book a pilot</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <div class="hero-kicker">Done‑for‑you market commentary</div>
+          <h1 class="hero-title">Briefs your clients love. Time your advisors get back.</h1>
+          <p class="hero-lede">Brieffolio turns macro and market data into a sharp monthly brief—client email, PDF, and talking points—so your RIA stays in front of clients without burning a Friday on writing.</p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="mailto:hello@brieffolio.co?subject=Pilot%20Monthly%20Brief">Book a pilot month</a>
+            <a class="btn btn-ghost" href="#deliverables">See what you get</a>
+          </div>
+          <p class="hero-note">Built for firms that already believe in education and want institutional‑grade commentary without adding headcount.</p>
+        </div>
+        <aside class="hero-card" aria-label="Sample April 2026 metrics">
+          <div class="hero-card-inner">
+            <div class="hero-card-header">
+              <div>
+                <div class="hero-card-title">April 2026 at a glance</div>
+                <p class="hero-note">The kind of snapshot we’d lead your brief with.</p>
+              </div>
+              <span class="hero-card-pill">Client snapshot</span>
+            </div>
+            <div class="metric-grid">
+              <div class="metric">
+                <div class="metric-label">Inflation (CPI YoY)</div>
+                <div class="metric-value">3.8%</div>
+                <div class="metric-caption">Highest reading in nearly 3 years.</div>
+              </div>
+              <div class="metric">
+                <div class="metric-label">Payrolls (April)</div>
+                <div class="metric-value">+115k</div>
+                <div class="metric-caption">Hiring cooling, not collapsing.</div>
+              </div>
+              <div class="metric">
+                <div class="metric-label">10‑year Treasury</div>
+                <div class="metric-value">4.42%</div>
+                <div class="metric-caption">Yields keep borrowing costs elevated.</div>
+              </div>
+              <div class="metric">
+                <div class="metric-label">Fed funds range</div>
+                <div class="metric-value">3.50–3.75%</div>
+                <div class="metric-caption">On hold at the April meeting.</div>
+              </div>
+            </div>
+            <p class="hero-footnote">We connect to trusted sources (BLS, FRED, Fed, etc.), generate the story in your tone, and deliver drafts your team can approve in minutes.</p>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section id="deliverables" class="section">
+      <div class="container">
+        <p class="section-heading">What you get each month</p>
+        <h2 class="section-title">One engine, three assets, no blank cursor.</h2>
+        <p class="section-lede">Every cycle, Brieffolio takes the same data your CIO already watches and turns it into a pack your team can actually reuse with clients.</p>
+        <div class="grid-2">
+          <article class="card">
+            <h3>Client‑ready email commentary</h3>
+            <p>A concise, plain‑English market email you can send from your existing platform—written in your voice, aligned with your house views.</p>
+            <ul>
+              <li>Subject line + preheader tailored to your audience</li>
+              <li>Macro recap, positioning, and “what this means for you”</li>
+              <li>Compliance‑aware drafts, not hot takes or calls to trade</li>
+            </ul>
+          </article>
+          <article class="card">
+            <h3>PDF brief & advisor talking points</h3>
+            <p>A 2–3 page PDF “Monthly Market Brief” plus an internal one‑pager of talking points advisors can lean on for reviews and outbound calls.</p>
+            <ul>
+              <li>Charts and key datapoints on one clean layout</li>
+              <li>Internal notes written just for advisors and leadership</li>
+              <li>Reusable across client decks, webinars, and proposals</li>
+            </ul>
+          </article>
+        </div>
+        <div class="pill-row">
+          <span class="pill">Your team always approves before anything goes out</span>
+          <span class="pill">Calm, evidence‑based tone—no headline chasing</span>
+          <span class="pill">Plugged into your disclosures and brand guidelines</span>
+        </div>
+      </div>
+    </section>
+
+    <section id="how" class="section">
+      <div class="container">
+        <p class="section-heading">How Brieffolio fits into your month</p>
+        <h2 class="section-title">We handle the heavy lift. You make the call.</h2>
+        <p class="section-lede">The goal is simple: turn a recurring time sink into a quick review step without losing your point of view.</p>
+        <div class="grid-2">
+          <article class="card">
+            <h3>1. We learn your voice</h3>
+            <p>You share a handful of past commentaries, brand guidelines, and any red‑lines from your CIO or compliance team.</p>
+            <ul>
+              <li>We map your tone, house views, and language to our engine</li>
+              <li>We agree on length, structure, and data sources up front</li>
+              <li>Nothing goes to clients without your sign‑off</li>
+            </ul>
+          </article>
+          <article class="card">
+            <h3>2. Monthly briefs on a schedule</h3>
+            <p>Once a month we pull fresh data, generate your email + PDF + notes, and send drafts to your team for quick review.</p>
+            <ul>
+              <li>Set delivery windows that line up with CPI/jobs/Fed meetings</li>
+              <li>Edits and nuance are easy—most teams tweak 5–10%</li>
+              <li>Your advisors get a predictable, reusable toolkit every month</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="who" class="section">
+      <div class="container">
+        <p class="section-heading">Who gets the most value</p>
+        <h2 class="section-title">Advisory teams that already care about communication.</h2>
+        <p class="section-lede">Brieffolio isn’t for firms trying to outsource their investment thinking. It’s for teams who know what they believe and want help packaging it consistently.</p>
+        <div class="grid-2">
+          <article class="card">
+            <h3>Independent RIAs</h3>
+            <p>Growing firms with limited internal marketing bandwidth that still want their own lens on the macro story.</p>
+            <ul>
+              <li>1–25 advisors under one investment framework</li>
+              <li>Existing commentary or review touchpoints we can enhance</li>
+              <li>US‑registered, with a clear compliance contact</li>
+            </ul>
+          </article>
+          <article class="card">
+            <h3>Wealth teams inside larger platforms</h3>
+            <p>Lead advisors who want to layer client‑friendly context on top of central research while staying inside their guardrails.</p>
+            <ul>
+              <li>Teams leveraging home‑office research but needing local flavor</li>
+              <li>Desire for a consistent monthly “voice” to clients</li>
+              <li>Ready to pilot with a subset of clients or segments</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <p>© 2026 Brieffolio. Monthly market briefs for RIAs.</p>
+      <p>Interested in a pilot month? Email <a href="mailto:hello@brieffolio.co">hello@brieffolio.co</a>.</p>
+    </div>
+  </footer>
+</body>
+</html>
