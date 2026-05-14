@@ -73,9 +73,11 @@
     .btn-lg { padding: 0.72rem 1.75rem; font-size: 0.9rem; }
 
     /* MODAL */
-    .modal-overlay { display: none; position: fixed; inset: 0; z-index: 900; background: rgba(2,4,10,0.82); backdrop-filter: blur(10px); align-items: center; justify-content: center; padding: 1.5rem; }
+    .modal-overlay { display: none; position: fixed; inset: 0; z-index: 900; background: rgba(2,4,10,0.82); backdrop-filter: blur(10px); align-items: flex-start; justify-content: center; padding: 1.5rem; overflow-y: auto; -webkit-overflow-scrolling: touch; }
     .modal-overlay.open { display: flex; }
-    .modal { background: #0a1020; border: 1px solid rgba(45,212,191,0.18); border-radius: 1.6rem; padding: 2.5rem; width: 100%; max-width: 520px; position: relative; box-shadow: 0 40px 100px rgba(0,0,0,0.9), 0 0 0 1px rgba(45,212,191,0.07) inset; animation: modal-in 0.32s var(--ease); }
+    /* iOS scroll fix: when modal is open, prevent body scroll but allow modal scroll */
+    body.modal-open { overflow: hidden; position: fixed; width: 100%; }
+    .modal { background: #0a1020; border: 1px solid rgba(45,212,191,0.18); border-radius: 1.6rem; padding: 2.5rem; width: 100%; max-width: 520px; position: relative; box-shadow: 0 40px 100px rgba(0,0,0,0.9), 0 0 0 1px rgba(45,212,191,0.07) inset; animation: modal-in 0.32s var(--ease); margin: auto; }
     @keyframes modal-in { from { opacity: 0; transform: translateY(24px) scale(0.97); } to { opacity: 1; transform: none; } }
     .modal-close { position: absolute; top: 1.25rem; right: 1.25rem; background: none; border: none; cursor: pointer; color: var(--soft); font-size: 1.3rem; line-height: 1; transition: color 0.15s; }
     .modal-close:hover { color: var(--text); }
@@ -85,7 +87,7 @@
     .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 0.85rem; }
     .form-group { display: flex; flex-direction: column; gap: 0.35rem; margin-bottom: 0.85rem; }
     .form-group label { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--soft); }
-    .form-group input, .form-group select, .form-group textarea { background: #0d1626; border: 1px solid var(--border2); border-radius: 0.65rem; padding: 0.65rem 0.9rem; font-size: 0.84rem; color: var(--text); font-family: var(--font); outline: none; transition: border-color 0.18s, box-shadow 0.18s; width: 100%; }
+    .form-group input, .form-group select, .form-group textarea { background: #0d1626; border: 1px solid var(--border2); border-radius: 0.65rem; padding: 0.65rem 0.9rem; font-size: 1rem; color: var(--text); font-family: var(--font); outline: none; transition: border-color 0.18s, box-shadow 0.18s; width: 100%; -webkit-appearance: none; }
     .form-group select { appearance: none; -webkit-appearance: none; cursor: pointer; background-color: #0d1626; color: var(--text); background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23768494' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 0.9rem center; padding-right: 2.2rem; }
     .form-group select option { background-color: #0d1626; color: #e8edf6; }
     .form-group select option:disabled { color: #3e4f62; }
@@ -263,8 +265,7 @@
       <div class="modal-kicker">Pilot program</div>
       <h2 id="modalTitle">Book your pilot month</h2>
       <p class="modal-sub">Tell us a bit about your firm and what you need. We'll reach out within one business day to set things up.</p>
-      <!-- ACTION points to Formspree — replace xyzabcde with your real Formspree form ID -->
-      <form id="pilotForm" action="https://formspree.io/f/Xpqbejnk" method="POST">
+      <form id="pilotForm" action="https://formspree.io/f/xpqbejnk" method="POST">
         <input type="hidden" name="_subject" value="Brieffolio Pilot Application" />
         <div class="form-row">
           <div class="form-group"><label for="firstName">First name</label><input type="text" id="firstName" name="firstName" placeholder="Jane" required /></div>
@@ -580,9 +581,26 @@
     document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
   })();
 
-  // Modal
-  function openModal() { document.getElementById('pilotModal').classList.add('open'); document.body.style.overflow = 'hidden'; }
-  function closeModal() { document.getElementById('pilotModal').classList.remove('open'); document.body.style.overflow = ''; }
+  // Modal — iOS scroll fix
+  var scrollY = 0;
+  function openModal() {
+    scrollY = window.scrollY;
+    document.getElementById('pilotModal').classList.add('open');
+    document.body.classList.add('modal-open');
+    document.body.style.top = '-' + scrollY + 'px';
+  }
+  function closeModal() {
+    document.getElementById('pilotModal').classList.remove('open');
+    document.body.classList.remove('modal-open');
+    document.body.style.top = '';
+    window.scrollTo(0, scrollY);
+    // Reset form state
+    document.getElementById('modalForm').style.display = '';
+    document.getElementById('modalSuccess').classList.remove('show');
+    var btn = document.getElementById('submitBtn');
+    btn.disabled = false;
+    btn.textContent = 'Submit \u2192';
+  }
   document.getElementById('modalClose').addEventListener('click', closeModal);
   document.getElementById('pilotModal').addEventListener('click', function(e){ if(e.target===this) closeModal(); });
   document.addEventListener('keydown', function(e){ if(e.key==='Escape') closeModal(); });
@@ -592,7 +610,7 @@
     e.preventDefault();
     var btn = document.getElementById('submitBtn');
     btn.disabled = true;
-    btn.textContent = 'Sending…';
+    btn.textContent = 'Sending\u2026';
     fetch(this.action, {
       method: 'POST',
       body: new FormData(this),
@@ -604,12 +622,12 @@
         setTimeout(closeModal, 4500);
       } else {
         btn.disabled = false;
-        btn.textContent = 'Submit →';
+        btn.textContent = 'Submit \u2192';
         alert('Something went wrong. Please email us directly at brieffolio@gmail.com');
       }
     }).catch(function(){
       btn.disabled = false;
-      btn.textContent = 'Submit →';
+      btn.textContent = 'Submit \u2192';
       alert('Network error. Please email us directly at brieffolio@gmail.com');
     });
   });
