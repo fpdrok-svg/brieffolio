@@ -114,10 +114,6 @@
     .hero-sub { font-size: 1.05rem; line-height: 1.75; color: var(--muted); max-width: 34rem; margin-bottom: 2.25rem; font-weight: 350; }
     .hero-actions { display: flex; gap: 0.75rem; flex-wrap: wrap; margin-bottom: 2.5rem; }
     .trust-line { display: flex; align-items: center; gap: 0.75rem; font-size: 0.76rem; color: var(--soft); }
-    .avatars { display: flex; }
-    .avatar { width: 24px; height: 24px; border-radius: 999px; border: 2px solid var(--bg); margin-left: -7px; background: linear-gradient(135deg, #3b82f6, #2dd4bf); }
-    .avatar:first-child { margin-left: 0; background: linear-gradient(135deg, #818cf8, #60a5fa); }
-    .avatar:nth-child(3) { background: linear-gradient(135deg, #2dd4bf, #4ade80); }
 
     /* HERO CARD */
     .hero-card { position: relative; z-index: 2; background: linear-gradient(148deg, #0d1a2e 0%, #08101e 100%); border: 1px solid rgba(255,255,255,0.08); border-radius: 1.6rem; padding: 1.75rem; box-shadow: 0 50px 120px rgba(0,0,0,0.9), 0 0 0 1px rgba(45,212,191,0.07) inset; overflow: hidden; }
@@ -126,8 +122,7 @@
     .card-title-row { display: flex; flex-direction: column; gap: 0.2rem; }
     .card-eyebrow { font-size: 0.62rem; font-weight: 600; letter-spacing: 0.28em; text-transform: uppercase; color: var(--soft); }
     .card-title-main { font-size: 0.85rem; font-weight: 600; color: var(--text); }
-    .live-badge { display: flex; align-items: center; gap: 0.4rem; font-size: 0.66rem; font-weight: 600; letter-spacing: 0.1em; color: var(--teal); padding: 0.25rem 0.7rem; border-radius: 999px; border: 1px solid rgba(45,212,191,0.28); background: rgba(45,212,191,0.06); }
-    .live-dot { width: 5px; height: 5px; border-radius: 999px; background: var(--teal); animation: blink 1.4s ease-in-out infinite; }
+    .sample-badge { display: flex; align-items: center; gap: 0.4rem; font-size: 0.66rem; font-weight: 600; letter-spacing: 0.1em; color: var(--blue); padding: 0.25rem 0.7rem; border-radius: 999px; border: 1px solid rgba(96,165,250,0.28); background: rgba(96,165,250,0.06); }
     .metrics { display: grid; grid-template-columns: 1fr 1fr; gap: 0.85rem; margin-bottom: 1.3rem; }
     .metric { background: rgba(14,22,40,0.9); border: 1px solid rgba(255,255,255,0.07); border-radius: 0.9rem; padding: 1rem 0.85rem; transition: border-color 0.2s; }
     .metric:hover { border-color: rgba(45,212,191,0.2); }
@@ -153,20 +148,23 @@
     .stat-num { font-family: var(--serif); font-size: 2.5rem; letter-spacing: -0.04em; color: var(--teal); line-height: 1; margin-bottom: 0.5rem; }
     .stat-label { font-size: 0.75rem; color: var(--muted); line-height: 1.5; }
 
-    /* SOCIAL PROOF */
-    .proof-band { position: relative; z-index: 1; background: rgba(5,8,16,0.7); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 4rem 1.75rem; }
-    .proof-inner { max-width: var(--max); margin: 0 auto; }
-    .proof-kicker { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.3em; text-transform: uppercase; color: var(--soft); text-align: center; margin-bottom: 2.5rem; }
-    .proof-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
-    .proof-card { background: var(--surface); border: 1px solid var(--border); border-radius: 1.2rem; padding: 1.75rem; transition: border-color 0.25s; }
-    .proof-card:hover { border-color: rgba(45,212,191,0.2); }
-    .proof-quote { font-size: 0.88rem; color: var(--text); line-height: 1.7; margin-bottom: 1.25rem; font-style: italic; }
-    .proof-author { display: flex; align-items: center; gap: 0.75rem; }
-    .proof-avatar { width: 32px; height: 32px; border-radius: 999px; flex-shrink: 0; }
-    .proof-name { font-size: 0.78rem; font-weight: 600; color: var(--text); }
-    .proof-title { font-size: 0.7rem; color: var(--muted); }
-    .proof-sample { margin-top: 3rem; text-align: center; }
-    .proof-sample p { font-size: 0.88rem; color: var(--muted); margin-bottom: 1rem; }
+    /* PILOT BAND */
+    .pilot-band { position: relative; z-index: 1; background: rgba(5,8,16,0.7); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 4rem 1.75rem; }
+    .pilot-inner { max-width: var(--max); margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+    .pilot-left h2 { font-family: var(--serif); font-size: clamp(1.7rem, 2.8vw, 2.3rem); line-height: 1.1; letter-spacing: -0.03em; font-weight: 400; margin-bottom: 1rem; }
+    .pilot-left p { font-size: 0.88rem; color: var(--muted); line-height: 1.75; margin-bottom: 1.75rem; }
+    .pilot-slots { display: grid; gap: 0.75rem; }
+    .pilot-slot { display: flex; align-items: center; gap: 0.85rem; padding: 0.9rem 1.1rem; background: var(--surface); border: 1px solid var(--border); border-radius: 0.9rem; transition: border-color 0.2s; }
+    .pilot-slot:hover { border-color: rgba(45,212,191,0.22); }
+    .slot-dot { width: 8px; height: 8px; border-radius: 999px; flex-shrink: 0; }
+    .slot-dot.open { background: var(--teal); box-shadow: 0 0 8px rgba(45,212,191,0.5); }
+    .slot-dot.filled { background: var(--soft); }
+    .slot-text { font-size: 0.8rem; color: var(--text); flex: 1; }
+    .slot-tag { font-size: 0.62rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; padding: 0.18rem 0.6rem; border-radius: 999px; }
+    .slot-tag.open { background: rgba(45,212,191,0.1); color: var(--teal); border: 1px solid rgba(45,212,191,0.22); }
+    .slot-tag.filled { background: rgba(62,79,98,0.3); color: var(--soft); border: 1px solid rgba(62,79,98,0.3); }
+    .pilot-note { margin-top: 1rem; font-size: 0.72rem; color: var(--soft); line-height: 1.6; }
+    @media (max-width: 760px) { .pilot-inner { grid-template-columns: 1fr; gap: 2.5rem; } }
 
     /* AI ENGINE SECTION */
     .ai-section { position: relative; z-index: 1; background: linear-gradient(160deg, rgba(45,212,191,0.04) 0%, rgba(96,165,250,0.03) 100%); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 6rem 1.75rem; overflow: hidden; }
@@ -252,6 +250,7 @@
     .price-cta.teal { background: var(--teal); color: #011a18; border-color: transparent; font-weight: 650; box-shadow: 0 0 26px rgba(45,212,191,0.38); }
     .price-cta.teal:hover { background: #5eead4; box-shadow: 0 0 44px rgba(45,212,191,0.6); transform: translateY(-1px); }
     .pricing-note { text-align: center; margin-top: 2rem; font-size: 0.76rem; color: var(--soft); }
+    .managed-note { text-align: center; margin-top: 0.75rem; font-size: 0.76rem; color: var(--muted); font-style: italic; }
 
     .steps { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
     .step { background: var(--surface); border: 1px solid var(--border); border-radius: 1.2rem; padding: 1.75rem; }
@@ -297,7 +296,6 @@
       .ai-inner { grid-template-columns: 1fr; gap: 3rem; }
       .nav-links { display: none; }
       .data-strip-inner { flex-wrap: wrap; gap: 1rem; }
-      .proof-grid { grid-template-columns: 1fr; }
       .pricing-grid { grid-template-columns: 1fr 1fr; }
     }
     @media (max-width: 600px) {
@@ -319,8 +317,8 @@
     <button class="modal-close" id="modalClose" aria-label="Close">&times;</button>
     <div id="modalForm">
       <div class="modal-kicker">Get Started</div>
-      <h2 id="modalTitle">Book a free demo</h2>
-      <p class="modal-sub">Tell us about your firm and what you need. We'll reach out within one business day with a sample brief built for your niche.</p>
+      <h2 id="modalTitle">Get your free sample brief</h2>
+      <p class="modal-sub">Tell us about your firm and we'll build a sample brief tailored to your niche — no commitment, no credit card. We respond within one business day.</p>
       <form id="pilotForm" action="https://formspree.io/f/xpqbejnk" method="POST">
         <input type="hidden" name="_subject" value="Brieffolio Demo Request" />
         <div class="form-row">
@@ -396,7 +394,7 @@
     </div>
     <div class="nav-right">
       <a class="btn btn-ghost nav-ghost-hide" href="mailto:hello@brieffolio.co?subject=Question">Talk to us</a>
-      <button class="btn btn-teal" onclick="openModal()">Book a demo &#8594;</button>
+      <button class="btn btn-teal" onclick="openModal()">Get a free sample &rarr;</button>
     </div>
   </nav>
 </header>
@@ -407,27 +405,22 @@
     <div>
       <div class="eyebrow reveal"><span class="eyebrow-dot"></span>Done-for-you client communications</div>
       <h1 class="reveal reveal-delay-1">Your clients stay informed.<br><em>We handle</em> every word.</h1>
-      <p class="hero-sub reveal reveal-delay-2">Brieffolio delivers polished, client-ready newsletters to wealth management, CRE, and advisory firms every month — written in your voice, built on live data, and ready to send before you've touched a keyboard. Starting at $1,200/month.</p>
+      <p class="hero-sub reveal reveal-delay-2">Brieffolio delivers polished, client-ready newsletters to wealth management, CRE, and advisory firms every month — written in your voice, built on current data, and ready to send before you've touched a keyboard. Starting at $1,200/month.</p>
       <div class="hero-actions reveal reveal-delay-3">
         <button class="btn btn-teal btn-lg" onclick="openModal()">Get a free sample brief &#8594;</button>
         <a class="btn btn-ghost btn-lg" href="#pricing">See pricing</a>
       </div>
       <div class="trust-line reveal reveal-delay-4">
-        <div class="avatars">
-          <div class="avatar"></div>
-          <div class="avatar"></div>
-          <div class="avatar"></div>
-        </div>
-        Trusted by RIAs, CRE firms, and client-facing teams who can't afford to go dark on clients.
+        No commitment — we build your sample brief before you decide.
       </div>
     </div>
     <aside class="hero-card reveal reveal-delay-2">
       <div class="card-header">
         <div class="card-title-row">
           <span class="card-eyebrow">AI brief snapshot</span>
-          <span class="card-title-main">May 2026 &mdash; generated in seconds</span>
+          <span class="card-title-main">Sample brief &mdash; May 2026</span>
         </div>
-        <div class="live-badge"><span class="live-dot"></span>Live data</div>
+        <div class="sample-badge">Sample data</div>
       </div>
       <div class="metrics">
         <div class="metric"><div class="metric-lbl">CPI (YoY)</div><div class="metric-val a">3.8%</div><div class="metric-note">Highest in nearly 3 years</div></div>
@@ -436,7 +429,7 @@
         <div class="metric"><div class="metric-lbl">Fed Funds</div><div class="metric-val t">3.50&ndash;3.75%</div><div class="metric-note">On hold &mdash; May meeting</div></div>
       </div>
       <hr class="card-rule">
-      <p class="card-footer-txt">AI-generated draft. Reviewed in under an hour. Ready to send to your full client list the same day.</p>
+      <p class="card-footer-txt">Illustrative sample — your briefs use real-time figures pulled each cycle. AI-drafted, reviewed in under an hour, sent under your brand.</p>
     </aside>
   </div>
 </div>
@@ -444,14 +437,14 @@
 <!-- DATA STRIP -->
 <div class="data-strip">
   <div class="data-strip-inner">
-    <span class="ds-label">AI-ingested sources</span>
+    <span class="ds-label">Sourced from</span>
     <div class="ds-items">
       <span class="ds-item">BLS.gov</span><div class="ds-sep"></div>
       <span class="ds-item">FRED / St. Louis Fed</span><div class="ds-sep"></div>
       <span class="ds-item">Federal Reserve</span><div class="ds-sep"></div>
       <span class="ds-item">CME FedWatch</span><div class="ds-sep"></div>
       <span class="ds-item">U.S. Treasury</span><div class="ds-sep"></div>
-      <span class="ds-item">12+ live sources</span>
+      <span class="ds-item">and more</span>
     </div>
   </div>
 </div>
@@ -463,8 +456,8 @@
     <div class="stat-label">From AI draft to client-ready brief</div>
   </div>
   <div class="stat-card reveal reveal-delay-1">
-    <div class="stat-num">12+</div>
-    <div class="stat-label">Live financial data sources ingested per brief</div>
+    <div class="stat-num">6+</div>
+    <div class="stat-label">Primary financial data sources per brief</div>
   </div>
   <div class="stat-card reveal reveal-delay-2">
     <div class="stat-num">3</div>
@@ -478,45 +471,42 @@
 
 <hr class="full-divider">
 
-<!-- SOCIAL PROOF -->
-<div class="proof-band">
-  <div class="proof-inner">
-    <div class="proof-kicker">What firms are saying</div>
-    <div class="proof-grid">
-      <div class="proof-card reveal">
-        <p class="proof-quote">&ldquo;We were sending quarterly updates at best. Brieffolio got us to monthly in week one. The first draft needed almost no changes.&rdquo;</p>
-        <div class="proof-author">
-          <svg class="proof-avatar" viewBox="0 0 32 32" style="width:32px;height:32px;"><circle cx="16" cy="16" r="16" fill="#1e3a5f"/><text x="50%" y="50%" dominant-baseline="central" text-anchor="middle" font-family="system-ui" font-size="13" font-weight="700" fill="#60a5fa">JM</text></svg>
-          <div>
-            <div class="proof-name">James M.</div>
-            <div class="proof-title">Managing Partner, RIA &mdash; $380M AUM</div>
-          </div>
-        </div>
-      </div>
-      <div class="proof-card reveal reveal-delay-1">
-        <p class="proof-quote">&ldquo;Our LP update used to take two weeks of back-and-forth. Now it's a one-hour review. Clients have noticed the consistency.&rdquo;</p>
-        <div class="proof-author">
-          <svg class="proof-avatar" viewBox="0 0 32 32" style="width:32px;height:32px;"><circle cx="16" cy="16" r="16" fill="#1a3a2a"/><text x="50%" y="50%" dominant-baseline="central" text-anchor="middle" font-family="system-ui" font-size="13" font-weight="700" fill="#4ade80">SR</text></svg>
-          <div>
-            <div class="proof-name">Sarah R.</div>
-            <div class="proof-title">Director of IR, CRE Capital Markets</div>
-          </div>
-        </div>
-      </div>
-      <div class="proof-card reveal reveal-delay-2">
-        <p class="proof-quote">&ldquo;The voice-matching is what sold me. The first draft sounded like something I would have written myself. That's rare with any AI tool.&rdquo;</p>
-        <div class="proof-author">
-          <svg class="proof-avatar" viewBox="0 0 32 32" style="width:32px;height:32px;"><circle cx="16" cy="16" r="16" fill="#2a1a3a"/><text x="50%" y="50%" dominant-baseline="central" text-anchor="middle" font-family="system-ui" font-size="13" font-weight="700" fill="#818cf8">DK</text></svg>
-          <div>
-            <div class="proof-name">David K.</div>
-            <div class="proof-title">Founder, Wealth Advisory Firm</div>
-          </div>
-        </div>
-      </div>
+<!-- PILOT ONBOARDING BAND -->
+<div class="pilot-band">
+  <div class="pilot-inner">
+    <div class="pilot-left">
+      <div class="section-kicker" style="margin-bottom:0.75rem;">Now onboarding</div>
+      <h2>We're onboarding our first pilot firms now.</h2>
+      <p>Brieffolio is in active pilot onboarding. Early firms get direct access to our team, shape the product roadmap, and lock in pilot pricing before public launch. We're keeping the initial cohort small on purpose.</p>
+      <button class="btn btn-teal btn-lg" onclick="openModal()">Apply for a pilot spot &rarr;</button>
+      <p class="pilot-note">We'll build a free sample brief for your firm before you commit to anything.</p>
     </div>
-    <div class="proof-sample reveal">
-      <p>Want to see exactly what your brief would look like before committing?</p>
-      <button class="btn btn-ghost btn-lg" onclick="openModal()">Request a free sample brief &rarr;</button>
+    <div class="pilot-slots">
+      <div class="pilot-slot">
+        <div class="slot-dot open"></div>
+        <span class="slot-text">RIA / Wealth advisory firm</span>
+        <span class="slot-tag open">Open</span>
+      </div>
+      <div class="pilot-slot">
+        <div class="slot-dot open"></div>
+        <span class="slot-text">RIA / Wealth advisory firm</span>
+        <span class="slot-tag open">Open</span>
+      </div>
+      <div class="pilot-slot">
+        <div class="slot-dot open"></div>
+        <span class="slot-text">Commercial real estate firm</span>
+        <span class="slot-tag open">Open</span>
+      </div>
+      <div class="pilot-slot">
+        <div class="slot-dot open"></div>
+        <span class="slot-text">Commercial real estate firm</span>
+        <span class="slot-tag open">Open</span>
+      </div>
+      <div class="pilot-slot">
+        <div class="slot-dot open"></div>
+        <span class="slot-text">Family office / private fund</span>
+        <span class="slot-tag open">Open</span>
+      </div>
     </div>
   </div>
 </div>
@@ -528,32 +518,32 @@
   <div class="ai-inner">
     <div>
       <div class="ai-pills">
-        <span class="ai-pill">AI-generated</span>
-        <span class="ai-pill blue">Real-time data</span>
+        <span class="ai-pill">AI-assisted drafting</span>
+        <span class="ai-pill blue">Current data</span>
         <span class="ai-pill purple">Voice-matched</span>
       </div>
-      <h2 class="reveal" style="margin-bottom:1rem;">The AI engine behind every brief.</h2>
-      <p class="section-lead reveal reveal-delay-1" style="margin-bottom:2rem;">Most market commentary is either too generic to build trust or too time-consuming to produce consistently. Brieffolio's AI was purpose-built to fix both — pulling live financial data, reading the macro narrative, and writing in the voice your clients already know.</p>
+      <h2 class="reveal" style="margin-bottom:1rem;">The engine behind every brief.</h2>
+      <p class="section-lead reveal reveal-delay-1" style="margin-bottom:2rem;">Most market commentary is either too generic to build trust or too time-consuming to produce consistently. Brieffolio was purpose-built to fix both — sourcing current financial data, reading the macro narrative, and writing in the voice your clients already know.</p>
       <div class="ai-features">
         <div class="ai-feat reveal reveal-delay-1">
           <div class="ai-feat-icon"><svg viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div>
           <div class="ai-feat-body">
-            <h4>Real-time financial data ingestion</h4>
-            <p>Our AI pulls directly from the Fed, BLS, Treasury, and CME every cycle &mdash; no manual lookups, no lagging data, no copy-paste errors.</p>
+            <h4>Current financial data, every cycle</h4>
+            <p>Each brief is built from current data sourced from the Fed, BLS, Treasury, and CME — no manual lookups, no lagging data, no copy-paste errors.</p>
           </div>
         </div>
         <div class="ai-feat reveal reveal-delay-2">
           <div class="ai-feat-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg></div>
           <div class="ai-feat-body">
-            <h4>Voice-trained writing model</h4>
-            <p>Share a few past updates and your brand guidelines. Our AI learns your tone, your house view, and your audience &mdash; then writes like you, not like a press release.</p>
+            <h4>Voice-matched writing</h4>
+            <p>Share a few past updates and your brand guidelines. We learn your tone, your house view, and your audience — then write like you, not like a press release.</p>
           </div>
         </div>
         <div class="ai-feat reveal reveal-delay-3">
           <div class="ai-feat-icon"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
           <div class="ai-feat-body">
             <h4>Human review before anything ships</h4>
-            <p>AI handles the research and drafting. Your team approves. Nothing goes to clients without your sign-off &mdash; so you keep the credibility, not just the speed.</p>
+            <p>AI handles the research and drafting. Your team approves. Nothing goes to clients without your sign-off — so you keep the credibility, not just the speed.</p>
           </div>
         </div>
       </div>
@@ -561,14 +551,14 @@
     <div class="ai-pipeline reveal reveal-delay-2">
       <div class="pipeline-label">Workflow &mdash; every cycle</div>
       <div class="pipeline-steps">
-        <div class="p-step"><span class="p-num">01</span><span class="p-text">Ingest live macro &amp; market data</span><span class="p-badge auto">Auto</span></div>
+        <div class="p-step"><span class="p-num">01</span><span class="p-text">Pull current macro &amp; market data</span><span class="p-badge auto">Auto</span></div>
         <div class="p-step"><span class="p-num">02</span><span class="p-text">Identify key narrative signals</span><span class="p-badge ai">AI</span></div>
         <div class="p-step"><span class="p-num">03</span><span class="p-text">Draft email, PDF brief &amp; talking points in your voice</span><span class="p-badge ai">AI</span></div>
         <div class="p-step"><span class="p-num">04</span><span class="p-text">Deliver full draft pack to your inbox</span><span class="p-badge auto">Auto</span></div>
         <div class="p-step"><span class="p-num">05</span><span class="p-text">Your team reviews &amp; approves</span><span class="p-badge human">You</span></div>
         <div class="p-step"><span class="p-num">06</span><span class="p-text">Brief goes to clients under your brand</span><span class="p-badge human">Done</span></div>
       </div>
-      <p class="pipeline-note">Average review time under one hour. Most teams send with minor edits or none at all.</p>
+      <p class="pipeline-note">Average review time under one hour. Most clients send with minor edits or none at all.</p>
     </div>
   </div>
 </section>
@@ -578,25 +568,25 @@
 <!-- DELIVERABLES -->
 <section id="deliverables" class="section">
   <div class="section-kicker reveal">What you get every cycle</div>
-  <h2 class="reveal reveal-delay-1">One AI data pull.<br>Three client-ready assets.</h2>
-  <p class="section-lead reveal reveal-delay-2">The AI generates everything. Your team reviews it. Your clients receive polished, credible market content on a consistent schedule &mdash; without your team spending days on it.</p>
+  <h2 class="reveal reveal-delay-1">One data pull.<br>Three client-ready assets.</h2>
+  <p class="section-lead reveal reveal-delay-2">We draft everything. Your team reviews it. Your clients receive polished, credible market content on a consistent schedule — without your team spending days on it.</p>
   <div class="del-grid">
     <div class="del-card reveal">
       <div class="del-icon"><svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 7l10 7 10-7"/></svg></div>
       <h3>AI-drafted client email</h3>
-      <p>A concise, plain-English market update written in your voice &mdash; ready to drop into your CRM, email platform, or investor list. Subject line, preheader, and all.</p>
+      <p>A concise, plain-English market update written in your voice — ready to drop into your CRM, email platform, or investor list. Subject line, preheader, and all.</p>
       <div class="tag-row"><span class="tag">Voice-matched copy</span><span class="tag">Macro recap</span><span class="tag">Send-ready</span></div>
     </div>
     <div class="del-card reveal reveal-delay-2">
       <div class="del-icon"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg></div>
       <h3>Branded PDF market brief</h3>
-      <p>A 2&ndash;3 page AI-compiled brief with live data, charts, and narrative commentary. Clients keep it on file. Your firm looks like it has a full research team behind it.</p>
-      <div class="tag-row"><span class="tag">Live data + charts</span><span class="tag">Executive summary</span><span class="tag">Branded layout</span></div>
+      <p>A 2&ndash;3 page brief with current data, charts, and narrative commentary. Clients keep it on file. Your firm looks like it has a full research team behind it.</p>
+      <div class="tag-row"><span class="tag">Current data + charts</span><span class="tag">Executive summary</span><span class="tag">Branded layout</span></div>
     </div>
     <div class="del-card reveal reveal-delay-3">
       <div class="del-icon"><svg viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/><line x1="2" y1="20" x2="22" y2="20"/></svg></div>
       <h3>Advisor talking points</h3>
-      <p>An AI-generated internal one-pager your team uses for client calls, investor updates, and webinars throughout the month. Consistent messaging, no guesswork.</p>
+      <p>An internal one-pager your team uses for client calls, investor updates, and webinars throughout the month. Consistent messaging, no guesswork.</p>
       <div class="tag-row"><span class="tag">Bullet-format</span><span class="tag">Q&amp;A responses</span><span class="tag">Internal use</span></div>
     </div>
   </div>
@@ -637,13 +627,13 @@
     <div class="addon-card reveal reveal-delay-1">
       <div class="addon-icon"><svg viewBox="0 0 24 24"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg></div>
       <h3>Lead magnet &amp; landing page</h3>
-      <p>A branded landing page per quarter tied to your newsletter CTA &mdash; designed to capture emails from prospects and grow your firm's list with qualified readers.</p>
+      <p>A branded landing page per quarter tied to your newsletter CTA — designed to capture emails from prospects and grow your firm's list with qualified readers.</p>
       <div class="addon-tier pro">Pro+</div>
     </div>
     <div class="addon-card reveal reveal-delay-2">
       <div class="addon-icon"><svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></div>
       <h3>White-label delivery</h3>
-      <p>The brief ships from your domain, your email platform, and your brand &mdash; zero Brieffolio attribution. To your clients, it looks entirely in-house. Available on Enterprise plans.</p>
+      <p>The brief ships from your domain, your email platform, and your brand — zero Brieffolio attribution. To your clients, it looks entirely in-house. Available on Enterprise plans.</p>
       <div class="addon-tier enterprise">Enterprise</div>
     </div>
   </div>
@@ -654,8 +644,8 @@
 <!-- HOW IT WORKS -->
 <section id="how" class="section">
   <div class="section-kicker reveal">How Brieffolio works</div>
-  <h2 class="reveal reveal-delay-1">AI does the research.<br>You keep the relationship.</h2>
-  <p class="section-lead reveal reveal-delay-2">We train on your voice once, then the system runs every month &mdash; so your team goes from raw data to sent brief in under an hour, on a consistent schedule.</p>
+  <h2 class="reveal reveal-delay-1">We do the research.<br>You keep the relationship.</h2>
+  <p class="section-lead reveal reveal-delay-2">We train on your voice once, then the system runs every month — so your team goes from raw data to sent brief in under an hour, on a consistent schedule.</p>
   <div class="steps">
     <div class="step reveal">
       <div class="step-n">Step 01 &mdash; Setup</div>
@@ -663,7 +653,7 @@
       <p>Share past updates, brand guidelines, and any tone or compliance guardrails. We map your voice so every draft sounds like something you would have written yourself.</p>
       <ul>
         <li>One-time onboarding call to dial in your style</li>
-        <li>AI voice profile built from your existing content</li>
+        <li>Voice profile built from your existing content</li>
         <li>Agree on data sources, cadence, and delivery timing</li>
         <li>First sample brief delivered within 5 business days</li>
       </ul>
@@ -671,12 +661,12 @@
     <div class="step reveal reveal-delay-2">
       <div class="step-n">Step 02 &mdash; Every cycle</div>
       <h3>We draft. You approve. Done.</h3>
-      <p>Each cycle the AI ingests fresh data, writes your full communication pack, and delivers drafts for a quick review. Most clients approve in under an hour with minor edits or none.</p>
+      <p>Each cycle we pull fresh data, write your full communication pack, and deliver drafts for a quick review. Most clients approve in under an hour with minor edits or none.</p>
       <ul>
-        <li>Auto-triggered around CPI, Fed, and jobs data releases</li>
+        <li>Timed around CPI, Fed, and jobs data releases</li>
         <li>Complete asset pack delivered to your inbox</li>
         <li>Nothing ships to clients without your sign-off</li>
-        <li>Unlimited revision requests within 48 hours</li>
+        <li>Revision requests turned around within 48 hours</li>
       </ul>
     </div>
   </div>
@@ -689,7 +679,7 @@
   <div class="pricing-inner">
     <div class="section-kicker reveal" style="text-align:center;">Transparent pricing</div>
     <h2 class="reveal reveal-delay-1" style="text-align:center;">Pick the plan that fits<br>your firm's cadence.</h2>
-    <p class="section-lead reveal reveal-delay-2" style="text-align:center; margin-left:auto; margin-right:auto;">Every plan includes a dedicated voice profile, full AI drafting, and human-review workflow. No hidden fees. Month-to-month.</p>
+    <p class="section-lead reveal reveal-delay-2" style="text-align:center; margin-left:auto; margin-right:auto;">Every plan includes a dedicated voice profile, full drafting, and human-review workflow. No hidden fees. Month-to-month.</p>
     <div class="pricing-grid">
       <div class="price-card reveal">
         <div class="price-tier">Core</div>
@@ -702,7 +692,7 @@
           <li>Branded PDF market brief</li>
           <li>Advisor talking points</li>
           <li>Voice profile setup</li>
-          <li>1 revision round</li>
+          <li>Up to 2 revision rounds</li>
           <li class="muted-feat">Content calendar</li>
           <li class="muted-feat">Social repurposing</li>
           <li class="muted-feat">Compliance archive</li>
@@ -722,7 +712,7 @@
           <li>Advisor talking points</li>
           <li>Monthly content calendar</li>
           <li>3 LinkedIn repurpose posts</li>
-          <li>2 revision rounds</li>
+          <li>Up to 2 revision rounds</li>
           <li>Priority delivery</li>
           <li class="muted-feat">Compliance archive</li>
         </ul>
@@ -740,7 +730,7 @@
           <li>Monthly engagement report</li>
           <li>Lead magnet landing page</li>
           <li>5 LinkedIn posts per brief</li>
-          <li>Unlimited revisions</li>
+          <li>Up to 3 revision rounds</li>
           <li>Dedicated account manager</li>
           <li class="muted-feat">White-label delivery</li>
         </ul>
@@ -766,6 +756,7 @@
       </div>
     </div>
     <p class="pricing-note">All plans include a free sample brief before you commit. No contracts. Cancel anytime.</p>
+    <p class="managed-note">Pricing reflects a managed service, not a subscription tool — your firm gets a dedicated team, not just a login.</p>
   </div>
 </section>
 
@@ -775,13 +766,13 @@
 <section id="who" class="section">
   <div class="section-kicker reveal">Who gets the most value</div>
   <h2 class="reveal reveal-delay-1">Built for client-facing firms<br>that can't afford to go quiet.</h2>
-  <p class="section-lead reveal reveal-delay-2">Whether you're managing a $200M book or closing your next CRE fund, Brieffolio gives your team the infrastructure to communicate like a top-tier firm &mdash; without hiring a content team to do it.</p>
+  <p class="section-lead reveal reveal-delay-2">Whether you're managing a $200M book or closing your next CRE fund, Brieffolio gives your team the infrastructure to communicate like a top-tier firm — without hiring a content team to do it.</p>
   <div class="who-grid">
     <div class="who-card reveal">
       <h3>Advisory &amp; wealth management</h3>
-      <p>RIAs, wealth advisors, and family offices that hold themselves to a high standard of client communication &mdash; and want AI to maintain that quality consistently, every single month.</p>
+      <p>RIAs, wealth advisors, and family offices that hold themselves to a high standard of client communication — and want a managed service to maintain that quality consistently, every single month.</p>
       <ul>
-        <li>Replace manual monthly writing with AI drafts</li>
+        <li>Replace manual monthly writing with reviewed AI drafts</li>
         <li>Consistent voice across all client touchpoints</li>
         <li>Institutional-quality content at the speed of a startup</li>
         <li>Compliance-ready approval workflow built in</li>
@@ -789,9 +780,9 @@
     </div>
     <div class="who-card reveal reveal-delay-2">
       <h3>Commercial real estate firms</h3>
-      <p>IR, brokerage, and capital markets teams that need polished market material for LPs and investors &mdash; generated from live data, not recycled talking points from last quarter.</p>
+      <p>IR, brokerage, and capital markets teams that need polished market material for LPs and investors — generated from current data, not recycled talking points from last quarter.</p>
       <ul>
-        <li>AI-sourced macro context for every deal narrative</li>
+        <li>Current macro context for every deal narrative</li>
         <li>Standardize LP and investor update quality</li>
         <li>Stay top of mind between transactions</li>
         <li>Replace ad hoc research with a repeatable workflow</li>
@@ -805,7 +796,7 @@
   <div class="cta-inner">
     <div class="section-kicker reveal" style="text-align:center;">Ready to see it in action?</div>
     <h2 class="reveal reveal-delay-1">Stop writing newsletters from scratch. Start sending ones that actually land.</h2>
-    <p class="reveal reveal-delay-2">We're onboarding a select group of firms right now. Book a demo and we'll build you a free sample brief &mdash; no commitment, no credit card, just proof it works for your firm.</p>
+    <p class="reveal reveal-delay-2">We're onboarding our first pilot firms right now. Request a free sample brief and we'll build one for your firm — no commitment, no credit card, just proof it works.</p>
     <div class="cta-btns reveal reveal-delay-3">
       <button class="btn btn-teal btn-lg" onclick="openModal()">Get my free sample brief &#8594;</button>
       <a class="btn btn-ghost btn-lg" href="mailto:hello@brieffolio.co?subject=Question">Ask a question</a>
