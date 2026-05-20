@@ -112,8 +112,9 @@
     h1 { font-family: var(--serif); font-size: clamp(2.7rem, 4.8vw, 3.8rem); line-height: 1.04; letter-spacing: -0.04em; margin-bottom: 1.5rem; font-weight: 400; }
     h1 em { font-style: italic; color: var(--teal); }
     .hero-sub { font-size: 1.05rem; line-height: 1.75; color: var(--muted); max-width: 34rem; margin-bottom: 2.25rem; font-weight: 350; }
-    .hero-actions { display: flex; gap: 0.75rem; flex-wrap: wrap; margin-bottom: 2.5rem; }
-    .trust-line { display: flex; align-items: center; gap: 0.75rem; font-size: 0.76rem; color: var(--soft); }
+    .hero-actions { display: flex; gap: 0.75rem; flex-wrap: wrap; margin-bottom: 1.25rem; }
+    .trust-line { display: flex; flex-direction: column; gap: 0.45rem; font-size: 0.76rem; color: var(--soft); margin-bottom: 2.5rem; }
+    .trust-line-compliance { font-size: 0.73rem; color: var(--soft); }
 
     /* HERO CARD */
     .hero-card { position: relative; z-index: 2; background: linear-gradient(148deg, #0d1a2e 0%, #08101e 100%); border: 1px solid rgba(255,255,255,0.08); border-radius: 1.6rem; padding: 1.75rem; box-shadow: 0 50px 120px rgba(0,0,0,0.9), 0 0 0 1px rgba(45,212,191,0.07) inset; overflow: hidden; }
@@ -141,12 +142,10 @@
     .ds-item { font-size: 0.76rem; font-weight: 500; color: var(--muted); letter-spacing: 0.04em; }
     .ds-sep { width: 1px; height: 14px; background: var(--border2); flex-shrink: 0; }
 
-    /* STAT BAND */
-    .stat-band { position: relative; z-index: 1; max-width: var(--max); margin: 0 auto; padding: 5rem 1.75rem; display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; }
-    .stat-card { background: var(--surface); border: 1px solid var(--border); border-radius: 1.2rem; padding: 1.75rem; text-align: center; transition: border-color 0.25s, transform 0.3s var(--ease), box-shadow 0.3s; }
-    .stat-card:hover { border-color: rgba(45,212,191,0.22); transform: translateY(-4px); box-shadow: 0 24px 60px rgba(0,0,0,0.6); }
-    .stat-num { font-family: var(--serif); font-size: 2.5rem; letter-spacing: -0.04em; color: var(--teal); line-height: 1; margin-bottom: 0.5rem; }
-    .stat-label { font-size: 0.75rem; color: var(--muted); line-height: 1.5; }
+    /* TRUST BAND (replaces stat band) */
+    .trust-band { position: relative; z-index: 1; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 1.35rem 0; background: rgba(5,8,16,0.5); }
+    .trust-band-inner { max-width: var(--max); margin: 0 auto; padding: 0 1.75rem; display: flex; align-items: center; justify-content: center; }
+    .trust-band-text { font-size: 0.76rem; color: var(--soft); letter-spacing: 0.03em; text-align: center; }
 
     /* PILOT BAND */
     .pilot-band { position: relative; z-index: 1; background: rgba(5,8,16,0.7); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 4rem 1.75rem; }
@@ -251,6 +250,7 @@
     .price-cta.teal:hover { background: #5eead4; box-shadow: 0 0 44px rgba(45,212,191,0.6); transform: translateY(-1px); }
     .pricing-note { text-align: center; margin-top: 2rem; font-size: 0.76rem; color: var(--soft); }
     .managed-note { text-align: center; margin-top: 0.75rem; font-size: 0.76rem; color: var(--muted); font-style: italic; }
+    .price-upgrade-nudge { font-size: 0.68rem; color: var(--soft); text-align: center; margin-top: 0.75rem; font-style: italic; line-height: 1.5; }
 
     .steps { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
     .step { background: var(--surface); border: 1px solid var(--border); border-radius: 1.2rem; padding: 1.75rem; }
@@ -292,7 +292,6 @@
       .hero { grid-template-columns: 1fr; padding-top: 80px; gap: 40px; }
       .hero-card { display: none; }
       .del-grid, .steps, .who-grid, .addon-grid { grid-template-columns: 1fr; }
-      .stat-band { grid-template-columns: repeat(2, 1fr); padding: 3rem 1.75rem; }
       .ai-inner { grid-template-columns: 1fr; gap: 3rem; }
       .nav-links { display: none; }
       .data-strip-inner { flex-wrap: wrap; gap: 1rem; }
@@ -301,7 +300,6 @@
     @media (max-width: 600px) {
       .nav-ghost-hide { display: none !important; }
       .btn { padding: 0.44rem 1rem; font-size: 0.76rem; }
-      .stat-band { grid-template-columns: 1fr 1fr; }
       .pricing-grid { grid-template-columns: 1fr; }
     }
   </style>
@@ -404,14 +402,15 @@
   <div class="hero">
     <div>
       <div class="eyebrow reveal"><span class="eyebrow-dot"></span>Done-for-you client communications</div>
-      <h1 class="reveal reveal-delay-1">Your clients stay informed.<br><em>We handle</em> every word.</h1>
-      <p class="hero-sub reveal reveal-delay-2">Brieffolio delivers polished, client-ready newsletters to wealth management, CRE, and advisory firms every month — written in your voice, built on current data, and ready to send before you've touched a keyboard. Starting at $1,200/month.</p>
+      <h1 class="reveal reveal-delay-1">Client newsletters your compliance officer will approve. And your clients will actually read.</h1>
+      <p class="hero-sub reveal reveal-delay-2">Brieffolio delivers polished, client-ready newsletters to wealth management, CRE, and advisory firms every month — written in your voice, built on current data, human-reviewed, and AI-accelerated. Starting at $1,200/month.</p>
       <div class="hero-actions reveal reveal-delay-3">
         <button class="btn btn-teal btn-lg" onclick="openModal()">Get a free sample brief &#8594;</button>
         <a class="btn btn-ghost btn-lg" href="#pricing">See pricing</a>
       </div>
       <div class="trust-line reveal reveal-delay-4">
-        No commitment — we build your sample brief before you decide.
+        <span>No commitment — we build your sample brief before you decide.</span>
+        <span class="trust-line-compliance">Built for FINRA and SEC-regulated firms. Every brief includes a human-review and approval workflow.</span>
       </div>
     </div>
     <aside class="hero-card reveal reveal-delay-2">
@@ -449,23 +448,10 @@
   </div>
 </div>
 
-<!-- STAT BAND -->
-<div class="stat-band">
-  <div class="stat-card reveal">
-    <div class="stat-num">&lt;1hr</div>
-    <div class="stat-label">From AI draft to client-ready brief</div>
-  </div>
-  <div class="stat-card reveal reveal-delay-1">
-    <div class="stat-num">6+</div>
-    <div class="stat-label">Primary financial data sources per brief</div>
-  </div>
-  <div class="stat-card reveal reveal-delay-2">
-    <div class="stat-num">3</div>
-    <div class="stat-label">Client-ready assets delivered every cycle</div>
-  </div>
-  <div class="stat-card reveal reveal-delay-3">
-    <div class="stat-num">0</div>
-    <div class="stat-label">Hours your team spends writing from scratch</div>
+<!-- TRUST BAND -->
+<div class="trust-band">
+  <div class="trust-band-inner">
+    <span class="trust-band-text">Trusted by RIA, wealth, and CRE firms onboarding now &mdash; logos coming soon.</span>
   </div>
 </div>
 
@@ -553,7 +539,7 @@
       <div class="pipeline-steps">
         <div class="p-step"><span class="p-num">01</span><span class="p-text">Pull current macro &amp; market data</span><span class="p-badge auto">Auto</span></div>
         <div class="p-step"><span class="p-num">02</span><span class="p-text">Identify key narrative signals</span><span class="p-badge ai">AI</span></div>
-        <div class="p-step"><span class="p-num">03</span><span class="p-text">Draft email, PDF brief &amp; talking points in your voice</span><span class="p-badge ai">AI</span></div>
+        <div class="p-step"><span class="p-num">03</span><span class="p-text">Draft email, PDF brief &amp; talking points in your voice</span><span class="p-badge ai">AI + Editor</span></div>
         <div class="p-step"><span class="p-num">04</span><span class="p-text">Deliver full draft pack to your inbox</span><span class="p-badge auto">Auto</span></div>
         <div class="p-step"><span class="p-num">05</span><span class="p-text">Your team reviews &amp; approves</span><span class="p-badge human">You</span></div>
         <div class="p-step"><span class="p-num">06</span><span class="p-text">Brief goes to clients under your brand</span><span class="p-badge human">Done</span></div>
@@ -698,6 +684,7 @@
           <li class="muted-feat">Compliance archive</li>
         </ul>
         <button class="price-cta" onclick="openModal()">Get started</button>
+        <p class="price-upgrade-nudge">Best as a 60-day starter. Most firms upgrade to Growth.</p>
       </div>
       <div class="price-card featured reveal reveal-delay-1">
         <div class="price-badge">Most popular</div>
